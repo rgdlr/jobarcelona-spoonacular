@@ -1,0 +1,4 @@
+.main {
+	background-color: var(--neutral-200);
+	flex-grow: 1;
+}

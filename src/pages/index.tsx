@@ -1,5 +1,5 @@
-import "../styles/index.css";
+import { Layout } from "../layout";
 
 export function App() {
-	return <h1>JOBarcelona</h1>;
+	return <Layout>App</Layout>;
 }
