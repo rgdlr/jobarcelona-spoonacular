@@ -1,0 +1,27 @@
+{
+	"name": "jobarcelona",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "tsc && vite build",
+		"dev": "vite --host",
+		"preview": "vite preview",
+		"lint:check": "eslint src/ --ext .ts,.tsx",
+		"lint:fix": "eslint src/ --ext .ts,.tsx --fix"
+	},
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.24",
+		"@types/react-dom": "^18.0.8",
+		"@typescript-eslint/eslint-plugin": "^5.56.0",
+		"@typescript-eslint/parser": "^5.56.0",
+		"@vitejs/plugin-react": "^2.2.0",
+		"eslint": "^8.36.0",
+		"typescript": "^4.6.4",
+		"vite": "^3.2.3"
+	}
+}
