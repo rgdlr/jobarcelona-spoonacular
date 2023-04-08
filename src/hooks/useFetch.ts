@@ -1,36 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function useFetch<Type>(url: string) {
-  const [data, setData] = useState<Type>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error>();
-  const [controller, setController] = useState<AbortController>();
+	const [controller, setController] = useState<AbortController>();
+	const [data, setData] = useState<Type>();
+	const [error, setError] = useState<Error>();
+	const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    const abortController = new AbortController();
-    setController(abortController);
+	const abort = () => {
+		if (controller) {
+			controller.abort();
+			setError({ name: "AbortError", message: "Cancelled Request" });
+		}
+	};
 
-    fetch(url, { signal: abortController.signal })
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error: Error) => {
-        if (error.name === "AbortError") {
-          setError({ name: "AbortError", message: "Cancelled Request" });
-        } else {
-          setError(error);
-        }
-      })
-      .finally(() => setLoading(false));
+	useEffect(() => {
+		const abortController = new AbortController();
+		setController(abortController);
 
-    return () => abortController.abort();
-  }, []);
+		fetch(url, { signal: abortController.signal })
+			.then((response) => response.json())
+			.then((json) => setData(json))
+			.catch((error: Error) => setError(error))
+			.finally(() => setLoading(false));
 
-  const abort = () => {
-    if (controller) {
-      controller.abort();
-      setError({ name: "AbortError", message: "Cancelled Request" });
-    }
-  };
+		return () => abortController.abort();
+	}, []);
 
-  return { data, loading, error, abort };
+	return { data, loading, error, abort };
 }
