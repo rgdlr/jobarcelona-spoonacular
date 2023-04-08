@@ -18,14 +18,18 @@
 
 .card__picture {
 	border-radius: inherit;
-	flex-grow: 1;
 	margin-bottom: 0.5rem;
 	position: relative;
 }
 
-.card__picture:has(> .card__image:not([src]))::before {
+.card__picture:has(.card__image:not([src])) {
+	flex-grow: 1;
+}
+
+.card__picture:has(.card__image:not([src]))::before {
 	background-color: var(--neutral-200);
 	border-radius: inherit;
+	color: var(--neutral-600);
 	content: "IMAGE NOT AVAILABLE";
 	display: grid;
 	inset: 0;
