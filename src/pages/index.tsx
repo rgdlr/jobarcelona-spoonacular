@@ -6,7 +6,7 @@ import { Layout } from "../layout";
 useMocks();
 
 export function App() {
-	const { data: recipesResponse } = useFetch<RecipesResponse>("recipes/random");
+	const { data: recipesResponse } = useFetch<RecipesResponse>("recipes/random?number=15");
 
 	return (
 		<Layout>
