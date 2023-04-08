@@ -16,10 +16,25 @@
 	transform: scale(1.025);
 }
 
-.card__image {
+.card__picture {
 	border-radius: inherit;
 	flex-grow: 1;
 	margin-bottom: 0.5rem;
+	position: relative;
+}
+
+.card__picture:has(> .card__image:not([src]))::before {
+	background-color: var(--neutral-200);
+	border-radius: inherit;
+	content: "IMAGE NOT AVAILABLE";
+	display: grid;
+	inset: 0;
+	place-items: center;
+	position: absolute;
+}
+
+.card__image {
+	border-radius: inherit;
 }
 
 .card__information {

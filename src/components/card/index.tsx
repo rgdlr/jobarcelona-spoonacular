@@ -3,7 +3,9 @@ import "./index.css";
 export function Card({ item }: { item: any }) {
 	return (
 		<li className="card">
-			<img className="card__image" src={item.image} />
+			<picture className="card__picture">
+				<img className="card__image" src={item.image} />
+			</picture>
 			<div className="card__information">
 				<div className="card__type">{item.dishTypes?.at(0)}</div>
 				<div className="card__data">
