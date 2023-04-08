@@ -1,15 +1,18 @@
 import { Cards, Filters, Search } from "../components";
-import { useMocks } from "../hooks";
+import { useFetch, useMocks } from "../hooks";
+import { RecipesResponse } from "../interfaces";
 import { Layout } from "../layout";
 
 useMocks();
 
 export function App() {
+	const { data: recipesResponse } = useFetch<RecipesResponse>("recipes/random");
+
 	return (
 		<Layout>
 			<Search />
 			<Filters />
-			<Cards />
+			<Cards items={recipesResponse?.recipes?.filter((_recipe, index) => index < 25)} />
 		</Layout>
 	);
 }
