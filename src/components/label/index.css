@@ -1,0 +1,47 @@
+.label {
+	font-size: 0.75rem;
+}
+
+.label--bottom {
+	background: linear-gradient(
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		transparent,
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100),
+		var(--gray-100)
+	);
+	left: calc(1rem - 0.25rem);
+	padding: 0.25rem;
+	position: relative;
+	top: 0.5rem;
+	z-index: 1;
+}
