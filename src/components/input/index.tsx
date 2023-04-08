@@ -1,5 +1,5 @@
 import "./index.css";
 
-export function Input() {
-	return <input className="input" />;
+export function Input(attributes: any) {
+	return <input {...attributes} className="input" />;
 }
