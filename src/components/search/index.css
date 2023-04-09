@@ -18,7 +18,7 @@
 	transition-timing-function: ease;
 }
 
-.search .input:focus {
+.search .input:focus:not([value=""]):has(~ .search__predictions:not(:empty)) {
 	border-bottom-color: transparent;
 	border-radius: 0.5rem 0.5rem 0 0;
 }
@@ -43,7 +43,7 @@
 	transition-timing-function: ease;
 }
 
-.search .input:focus ~ .search__predictions {
+.search .input:focus:not([value=""]) ~ .search__predictions:not(:empty) {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
