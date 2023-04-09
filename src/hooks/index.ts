@@ -1,8 +1,9 @@
+export { useDebounce } from "./useDebounce";
 export { useFetch } from "./useFetch";
 export { useI18N } from "./useI18N";
 export { useInterceptor } from "./useInterceptor";
 export { useMocks } from "./useMocks";
 export { useMonkeyPatching } from "./useMonkeyPatching";
 export { useOnBlur } from "./useOnBlur";
+export { useStateWithDebounce } from "./useStateWithDebounce";
 export { useTranslate } from "./useTranslate";
-
