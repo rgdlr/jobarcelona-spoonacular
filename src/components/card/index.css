@@ -1,6 +1,6 @@
 .card {
 	background-color: var(--neutral-100);
-	border-radius: 0.75rem;
+	border-radius: 1rem;
 	color: var(--neutral-800);
 	cursor: default;
 	display: flex;
@@ -16,7 +16,7 @@
 }
 
 .card__picture {
-	border-radius: 0.75rem 0.75rem 0 0;
+	aspect-ratio: 3/2;
 	margin-bottom: 0.5rem;
 	position: relative;
 }
@@ -27,12 +27,11 @@
 
 .card__picture:has(.card__image:not([src]))::before {
 	background-color: var(--neutral-300);
-	border-radius: inherit;
 	color: var(--neutral-600);
 	content: "IMAGE NOT AVAILABLE";
 	display: grid;
 	inset: 0;
-	place-items: center;
+	place-content: center;
 	position: absolute;
 }
 
