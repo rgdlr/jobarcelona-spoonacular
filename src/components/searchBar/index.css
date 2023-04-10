@@ -1,0 +1,9 @@
+.search-bar {
+	align-items: center;
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+	position: sticky;
+	top: -0.25rem;
+	z-index: 3;
+}

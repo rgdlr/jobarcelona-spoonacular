@@ -1,4 +1,4 @@
-import { Cards, Filters, Search } from "../components";
+import { Cards, Loader, SearchBar } from "../components";
 import { useFetch, useMocks } from "../hooks";
 import { RecipesResponse } from "../interfaces";
 import { Layout } from "../layout";
@@ -10,9 +10,12 @@ export function App() {
 
 	return (
 		<Layout>
-			<Search />
-			<Filters />
-			<Cards items={recipesResponse?.recipes?.filter((_recipe, index) => index < 25)} />
+			<SearchBar />
+			{recipesResponse ? (
+				<Cards items={recipesResponse?.recipes?.filter((_recipe, index) => index < 25)} />
+			) : (
+				<Loader />
+			)}
 		</Layout>
 	);
 }
