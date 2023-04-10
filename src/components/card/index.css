@@ -7,7 +7,6 @@
 	flex-direction: column;
 	font-weight: bold;
 	overflow: hidden;
-	padding: 0.5rem;
 
 	transition: transform 250ms ease;
 }
@@ -17,7 +16,7 @@
 }
 
 .card__picture {
-	border-radius: inherit;
+	border-radius: 0.75rem 0.75rem 0 0;
 	margin-bottom: 0.5rem;
 	position: relative;
 }
@@ -27,7 +26,7 @@
 }
 
 .card__picture:has(.card__image:not([src]))::before {
-	background-color: var(--neutral-200);
+	background-color: var(--neutral-300);
 	border-radius: inherit;
 	color: var(--neutral-600);
 	content: "IMAGE NOT AVAILABLE";
@@ -45,14 +44,14 @@
 	display: flex;
 	justify-content: space-between;
 	font-size: 0.75rem;
-	padding: 0.75rem;
+	padding: 0.5rem 1rem;
 }
 
 .card__type {
 	background-color: var(--violet-600);
 	border-radius: 5rem;
 	color: var(--neutral-100);
-	min-width: 3rem;
+	min-width: 2rem;
 	padding: 0.25rem 0.5rem;
 	text-transform: uppercase;
 }
@@ -75,5 +74,6 @@
 }
 
 .card__title {
-	padding: 0.75rem;
+	margin-bottom: 1rem;
+	padding: 0.5rem 1rem;
 }
