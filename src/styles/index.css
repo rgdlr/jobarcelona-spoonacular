@@ -12,14 +12,3 @@ html {
 	flex-direction: column;
 	height: fit-content;
 }
-
-#root > header,
-#root > main,
-#root > footer {
-	padding: 1rem;
-}
-
-#root > main {
-	margin-inline: auto;
-	width: min(75rem, 100%);
-}

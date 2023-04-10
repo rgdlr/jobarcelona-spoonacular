@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Input, Label } from "../../components";
 import { useStateWithDebounce } from "../../hooks";
 import "./index.css";
@@ -36,8 +36,22 @@ export function Search() {
 
 	return (
 		<div className="search">
-			<Label>Search</Label>
-			<Input onChange={updatePredictions} value={search}></Input>
+			<Label for="search">Search</Label>
+			<Input id="search" onChange={updatePredictions} value={search}></Input>
+			<svg
+				className="search__icon"
+				aria-labelledby="search"
+				fill="none"
+				height="18"
+				width="18"
+				xmlns="http://www.w3.org/2000/svg">
+				<path
+					d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+					stroke="currentColor"
+					stroke-width="1.333"
+					stroke-linecap="round"
+					stroke-linejoin="round"></path>
+			</svg>
 			<ul className="search__predictions">
 				{predictions.map((prediction) => (
 					<li className="search__prediction" key={prediction.text}>

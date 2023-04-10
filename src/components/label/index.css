@@ -1,5 +1,7 @@
 .label {
-	font-size: 0.75rem;
+	transition-property: color, font-size, top;
+	transition-duration: 500ms;
+	transition-timing-function: ease;
 }
 
 .label--bottom {
@@ -39,9 +41,17 @@
 		var(--neutral-100),
 		var(--neutral-100)
 	);
+	color: var(--neutral-400);
 	left: calc(1rem - 0.25rem);
 	padding: 0.25rem;
 	position: relative;
-	top: 0.5rem;
+	top: calc(2rem + 0.125rem);
 	z-index: 1;
+}
+
+.label--bottom:has(~ .input:focus),
+.label--bottom:has(~ .input:not([value=""])) {
+	color: var(--neutral-600);
+	font-size: 0.75rem;
+	top: 0.5rem;
 }

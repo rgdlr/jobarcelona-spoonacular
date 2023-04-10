@@ -12,7 +12,15 @@
 	position: absolute;
 }
 
+.search__icon {
+	position: absolute;
+	right: 1rem;
+	top: 50%;
+}
+
 .search .input {
+	border-radius: 1rem;
+	padding-right: 2.5rem;
 	transition-property: border, border-radius;
 	transition-duration: 250ms;
 	transition-timing-function: ease;
@@ -20,12 +28,12 @@
 
 .search .input:focus:not([value=""]):has(~ .search__predictions:not(:empty)) {
 	border-bottom-color: transparent;
-	border-radius: 0.5rem 0.5rem 0 0;
+	border-radius: 1rem 1rem 0 0;
 }
 
 .search__predictions {
 	background-color: var(--neutral-100);
-	border-radius: 0 0 0.5rem 0.5rem;
+	border-radius: 0 0 1rem 1rem;
 	border: 0.1rem solid var(--neutral-400);
 	border-top: transparent;
 	cursor: default;
