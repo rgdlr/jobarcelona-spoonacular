@@ -6,16 +6,10 @@
 	z-index: 3;
 }
 
-.search::before {
-	content: "";
-	inset: -1rem;
-	position: absolute;
-}
-
 .search__icon {
 	position: absolute;
 	right: 1rem;
-	top: 50%;
+	top: 52.5%;
 }
 
 .search .input {
@@ -34,7 +28,7 @@
 .search__predictions {
 	background-color: var(--neutral-100);
 	border-radius: 0 0 1rem 1rem;
-	border: 0.1rem solid var(--neutral-400);
+	border: 0.1rem solid var(--neutral-300);
 	border-top: transparent;
 	cursor: default;
 	margin-top: -0.5rem;

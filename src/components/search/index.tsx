@@ -19,7 +19,7 @@ export function Search() {
 		setPredictions(updatedPredictions);
 
 		const url = new URL(window.location.href);
-		!/\s+$/g.test(event.target.value)
+		!/^\s*$/g.test(event.target.value)
 			? url.searchParams.set("search", event.target.value.trim())
 			: url.searchParams.delete("search");
 		window.history.replaceState(null, "", url);
@@ -36,8 +36,8 @@ export function Search() {
 
 	return (
 		<div className="search">
-			<Label for="search">Search</Label>
-			<Input id="search" onChange={updatePredictions} value={search}></Input>
+			<Label htmlFor="search">Search</Label>
+			<Input id="search" onChange={updatePredictions} type="search" value={search}></Input>
 			<svg
 				className="search__icon"
 				aria-labelledby="search"
@@ -48,9 +48,9 @@ export function Search() {
 				<path
 					d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
 					stroke="currentColor"
-					stroke-width="1.333"
-					stroke-linecap="round"
-					stroke-linejoin="round"></path>
+					strokeWidth="1.333"
+					strokeLinecap="round"
+					strokeLinejoin="round"></path>
 			</svg>
 			<ul className="search__predictions">
 				{predictions.map((prediction) => (
