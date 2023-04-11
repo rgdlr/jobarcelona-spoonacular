@@ -7,17 +7,12 @@
 	flex-direction: column;
 	font-weight: bold;
 	overflow: hidden;
-
-	transition: transform 250ms ease;
-}
-
-.card:hover {
-	transform: scale(1.025);
 }
 
 .card__picture {
 	aspect-ratio: 3/2;
 	margin-bottom: 0.5rem;
+	overflow: hidden;
 	position: relative;
 }
 
@@ -37,6 +32,14 @@
 
 .card__image {
 	border-radius: inherit;
+	transition: filter, transform;
+	transition-duration: 250ms;
+	transition-timing-function : ease;
+}
+
+.card:hover .card__image {
+	filter: saturate(1.25);
+	transform: scale(1.125);
 }
 
 .card__information {
