@@ -200,14 +200,14 @@ export function Filters({ onSearch }: { onSearch: (search: string) => void }) {
 		const url = new URL(window.location.href);
 		Object.entries(formProperties).forEach(([key, value]) => {
 			const filter = flatFilters.find((filter) => filter.param === key);
-			if (typeof filter?.value === "string" && value) {
-				url.searchParams.set(filter?.param, value.toString());
+			if (filter?.param && typeof filter?.value === "string" && value) {
+				url.searchParams.set(filter.param, value.toString());
 			}
-			if (typeof filter?.value === "boolean") {
-				url.searchParams.set(filter?.param, "true");
+			if (filter?.param && typeof filter?.value === "boolean") {
+				url.searchParams.set(filter.param, "true");
 			}
-			if (typeof filter?.value === "object") {
-				url.searchParams.set(filter?.param, value.toString());
+			if (filter?.param && typeof filter?.value === "object") {
+				url.searchParams.set(filter.param, value.toString());
 			}
 		});
 		typeof onSearch === "function" && onSearch(url.search);
