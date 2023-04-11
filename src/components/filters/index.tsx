@@ -186,7 +186,7 @@ const sort = [
 	"zinc"
 ];
 
-export function Filters() {
+export function Filters({ onSearch }: { onSearch: (search: string) => void }) {
 	const filtersRef = useRef(null);
 	const [show, setShow] = useState(false);
 	useOnBlur(filtersRef, () => setShow(false), show);
@@ -197,7 +197,20 @@ export function Filters() {
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
 		const formProperties = Object.fromEntries(formData);
-		Object.entries(formProperties).forEach(([key, value]) => console.log(key, value));
+		const url = new URL(window.location.href);
+		Object.entries(formProperties).forEach(([key, value]) => {
+			const filter = flatFilters.find((filter) => filter.param === key);
+			if (typeof filter?.value === "string" && value) {
+				url.searchParams.set(filter?.param, value.toString());
+			}
+			if (typeof filter?.value === "boolean") {
+				url.searchParams.set(filter?.param, "true");
+			}
+			if (typeof filter?.value === "object") {
+				url.searchParams.set(filter?.param, value.toString());
+			}
+		});
+		typeof onSearch === "function" && onSearch(url.search);
 	};
 
 	return (

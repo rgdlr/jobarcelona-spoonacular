@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { Input, Label } from "../../components";
 import { useOnBlur, useStateWithDebounce } from "../../hooks";
 import "./index.css";
@@ -9,7 +9,7 @@ interface Autocomplete {
 	title: string;
 }
 
-export function Search() {
+export function Search({ onSearch }: { onSearch: (search: string) => void }) {
 	const searchRef = useRef(null);
 	const [show, setShow] = useState(false);
 	const [searchWithDebounce, setSearchWithDebounce, search, setSearch] = useStateWithDebounce("");
@@ -22,6 +22,7 @@ export function Search() {
 
 		const hasContent = !/^\s*$/g.test(event.target.value);
 		hasContent || setShow(false);
+		hasContent || onSearch("");
 
 		const url = new URL(window.location.href);
 		hasContent
@@ -37,6 +38,13 @@ export function Search() {
 		const url = new URL(window.location.href);
 		url.searchParams.set("query", event.target.innerText);
 		window.history.replaceState(null, "", url);
+
+		onSearch(`query=${event.target.innerText}`);
+	};
+
+	const doSearch = (event: FormEvent) => {
+		event.preventDefault();
+		search ? onSearch(`query=${search}`) : onSearch("");
 	};
 
 	useEffect(() => {
@@ -53,7 +61,7 @@ export function Search() {
 	}, [searchWithDebounce]);
 
 	return (
-		<div className="search" ref={searchRef}>
+		<form autoComplete="false" className="search" ref={searchRef} onSubmit={doSearch}>
 			<Label htmlFor="search">Search</Label>
 			<Input id="search" onChange={updatePredictions} type="search" value={search}></Input>
 			<button className="search__icon">
@@ -80,6 +88,6 @@ export function Search() {
 					</li>
 				))}
 			</ul>
-		</div>
+		</form>
 	);
 }
