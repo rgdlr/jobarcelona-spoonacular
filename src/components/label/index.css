@@ -45,7 +45,7 @@
 	left: calc(1rem - 0.25rem);
 	padding: 0.25rem;
 	position: relative;
-	top: calc(2rem + 0.125rem);
+	top: calc(2rem + 0.25rem);
 	z-index: 1;
 }
 
@@ -53,5 +53,5 @@
 .label--bottom:has(~ .input:not([value=""])) {
 	color: var(--neutral-600);
 	font-size: 0.75rem;
-	top: 0.5rem;
+	top: 0.525rem;
 }

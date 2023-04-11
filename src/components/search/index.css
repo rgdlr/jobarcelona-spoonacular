@@ -16,7 +16,7 @@
 	border-radius: 1rem;
 	padding-right: 2.5rem;
 	transition-property: border, border-radius;
-	transition-duration: 250ms;
+	transition-duration: 125ms;
 	transition-timing-function: ease;
 }
 
