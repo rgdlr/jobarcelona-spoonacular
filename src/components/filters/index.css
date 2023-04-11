@@ -44,7 +44,15 @@
 }
 
 .filters__filter {
-	padding: 0.5rem;
+	padding: 0.5rem 1rem;
+}
+
+.filters__filter:first-child {
+	padding-top: 1rem;
+}
+
+.filters__filter:last-child {
+	padding: 1rem;
 }
 
 .filters__input,

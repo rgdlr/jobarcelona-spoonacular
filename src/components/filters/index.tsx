@@ -107,25 +107,27 @@ const filters = {
 		{
 			param: "instructionsRequired",
 			text: "Instructions Required",
-			value: [true, false]
+			value: false
 		},
 		{
 			param: "fillIngredients",
 			text: "Fill Ingredients",
-			value: [true, false]
+			value: false
 		},
 		{
 			param: "addRecipeInformation",
 			text: "Add Recipe Information",
-			value: [true, false]
+			value: false
 		},
 		{
 			param: "addRecipeNutrition",
 			text: "Add Recipe Nutrition",
-			value: [true, false]
+			value: false
 		}
 	]
 };
+
+const flatFilters = [...filters.query, ...filters.select, ...filters.switch];
 
 const sort = [
 	"",
