@@ -39,7 +39,7 @@
 
 .card:hover .card__image {
 	filter: saturate(1.25);
-	transform: scale(1.125);
+	transform: scale(1.05);
 }
 
 .card__information {

@@ -1,6 +1,6 @@
 import "./index.css";
 
-export function Loader() {
+export function Loader(): JSX.Element {
 	return (
 		<div className="loader">
 			<div className="loader__text">Cooking...</div>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Filters, Search } from "../../components";
+import { filtersList } from "../../constants";
 import "./index.css";
 
-export function SearchBar({ onSearch }: { onSearch: (results: any) => void }) {
+export function SearchBar({ onSearch }: { onSearch: (results: any) => void }): JSX.Element {
 	const [textSearch, setTextSearch] = useState("");
 	const [filterSearch, setFilterSearch] = useState("");
 
@@ -31,7 +32,7 @@ export function SearchBar({ onSearch }: { onSearch: (results: any) => void }) {
 	return (
 		<div className="search-bar">
 			<Search onSearch={onTextSearch} />
-			<Filters onSearch={onFilterSearch} />
+			<Filters onSearch={onFilterSearch} items={filtersList} />
 		</div>
 	);
 }

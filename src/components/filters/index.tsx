@@ -1,192 +1,18 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, HTMLAttributes, useRef, useState } from "react";
+import { Filter } from "../../components";
+import { Filter as FilterT, filtersList } from "../../constants";
 import { useOnBlur } from "../../hooks";
+import { Filter as FilterI } from "../../interfaces";
 import "./index.css";
 
-const selectOptions = {
-	cuisine: [
-		"african",
-		"american",
-		"british",
-		"cajun",
-		"caribbean",
-		"chinese",
-		"eastern european",
-		"european",
-		"french",
-		"german",
-		"greek",
-		"indian",
-		"irish",
-		"italian",
-		"japanese",
-		"jewish",
-		"korean",
-		"latin american",
-		"mediterranean",
-		"mexican",
-		"middle eastern",
-		"nordic",
-		"southern",
-		"spanish",
-		"thai",
-		"vietnamese"
-	],
-	intolerance: [
-		"dairy",
-		"egg",
-		"gluten",
-		"grain",
-		"peanut",
-		"seafood",
-		"sesame",
-		"shellfish",
-		"soy",
-		"sulfite",
-		"tree nut",
-		"wheat"
-	],
-	type: [
-		"main course",
-		"side dish",
-		"dessert",
-		"appetizer",
-		"salad",
-		"bread",
-		"breakfast",
-		"soup",
-		"beverage",
-		"sauce",
-		"marinade",
-		"fingerfood",
-		"snack",
-		"drink"
-	]
-};
+export interface FiltersAttributes<T> extends HTMLAttributes<HTMLUListElement> {
+	items?: T;
+	onSearch(search: string): void;
+}
 
-const filters = {
-	query: [
-		{
-			param: "includeIngredients",
-			text: "Include Ingredients",
-			value: ""
-		},
-		{
-			param: "excludeIngredients",
-			text: "Exclude Ingredients",
-			value: ""
-		},
-		{
-			param: "author",
-			text: "Author",
-			value: ""
-		}
-	],
-	select: [
-		{
-			param: "cuisine",
-			text: "Include Cuisine",
-			value: selectOptions.cuisine
-		},
-		{
-			param: "excludeCuisine",
-			text: "Exclude Cuisine",
-			value: selectOptions.cuisine
-		},
-		{
-			param: "type",
-			text: "Type",
-			value: selectOptions.type
-		},
-		{
-			param: "intolerances",
-			text: "Intolerances",
-			value: selectOptions.intolerance
-		}
-	],
-	switch: [
-		{
-			param: "instructionsRequired",
-			text: "Instructions Required",
-			value: false
-		},
-		{
-			param: "fillIngredients",
-			text: "Fill Ingredients",
-			value: false
-		},
-		{
-			param: "addRecipeInformation",
-			text: "Add Recipe Information",
-			value: false
-		},
-		{
-			param: "addRecipeNutrition",
-			text: "Add Recipe Nutrition",
-			value: false
-		}
-	]
-};
+export function Filters(attributes: FiltersAttributes<FilterI[]>): JSX.Element {
+	const { children, className, items, onSearch, ...restAttributes } = attributes;
 
-const flatFilters = [...filters.query, ...filters.select, ...filters.switch];
-
-const sort = [
-	"",
-	"meta-score",
-	"popularity",
-	"healthiness",
-	"price",
-	"time",
-	"random",
-	"max-used-ingredients",
-	"min-missing-ingredients",
-	"alcohol",
-	"caffeine",
-	"copper",
-	"energy",
-	"calories",
-	"calcium",
-	"carbohydrates",
-	"carbs",
-	"choline",
-	"cholesterol",
-	"total-fat",
-	"fluoride",
-	"trans-fat",
-	"saturated-fat",
-	"mono-unsaturated-fat",
-	"poly-unsaturated-fat",
-	"fiber",
-	"folate",
-	"folic-acid",
-	"iodine",
-	"iron",
-	"magnesium",
-	"manganese",
-	"vitamin-b3",
-	"niacin",
-	"vitamin-b5",
-	"pantothenic-acid",
-	"phosphorus",
-	"potassium",
-	"protein",
-	"vitamin-b2",
-	"riboflavin",
-	"selenium",
-	"sodium",
-	"vitamin-b1",
-	"thiamin",
-	"vitamin-a",
-	"vitamin-b6",
-	"vitamin-b12",
-	"vitamin-c",
-	"vitamin-d",
-	"vitamin-e",
-	"vitamin-k",
-	"sugar",
-	"zinc"
-];
-
-export function Filters({ onSearch }: { onSearch: (search: string) => void }) {
 	const filtersRef = useRef(null);
 	const [show, setShow] = useState(false);
 	useOnBlur(filtersRef, () => setShow(false), show);
@@ -199,15 +25,16 @@ export function Filters({ onSearch }: { onSearch: (search: string) => void }) {
 		const formProperties = Object.fromEntries(formData);
 		const url = new URL(window.location.href);
 		Object.entries(formProperties).forEach(([key, value]) => {
-			const filter = flatFilters.find((filter) => filter.param === key);
-			if (filter?.param && typeof filter?.value === "string" && value) {
-				url.searchParams.set(filter.param, value.toString());
+			const filter = filtersList.find((filter) => filter.id === key);
+
+			if (!filter?.id) {
+				return;
 			}
-			if (filter?.param && typeof filter?.value === "boolean") {
-				url.searchParams.set(filter.param, "true");
-			}
-			if (filter?.param && typeof filter?.value === "object") {
-				url.searchParams.set(filter.param, value.toString());
+
+			if (filter?.type === FilterT.Checkbox) {
+				url.searchParams.set(filter.id, "true");
+			} else {
+				url.searchParams.set(filter.id, value.toString());
 			}
 		});
 		typeof onSearch === "function" && onSearch(url.search);
@@ -222,45 +49,11 @@ export function Filters({ onSearch }: { onSearch: (search: string) => void }) {
 			</button>
 			<form onSubmit={onFilter}>
 				<ul className={`filters__list filters__list--${show ? "show" : "hidden"}`}>
-					{filters.query.map((filter) => (
-						<li className="filters__filter" key={filter.param}>
-							<input
-								className="filters__input"
-								name={filter.param}
-								placeholder={filter.text}></input>
-						</li>
-					))}
-					{filters.select.map((filter) => (
-						<li className="filters__filter" key={filter.param}>
-							<select className="filters__select" defaultValue={filter.param} name={filter.param}>
-								<option className="filters__option" disabled value={filter.param}>
-									{filter.text}
-								</option>
-								{filter.value?.map((option) => (
-									<option className="filters__option" key={option} value={option}>
-										{option}
-									</option>
-								))}
-							</select>
-						</li>
-					))}
-					{filters.switch.map((filter) => (
-						<li className="filters__filter" key={filter.param}>
-							<input
-								className="filters__input"
-								id={filter.param}
-								name={filter.param}
-								type="checkbox"
-							/>
-							<label className="filters__label" htmlFor={filter.param}>
-								{filter.text}
-							</label>
-						</li>
-					))}
-					<li className="filters__filter">
+					{items && items?.map((item) => <Filter item={item} key={item.id} />)}
+					<Filter>
 						<input className="filters__input" type="reset" name="reset" />
 						<input className="filters__input" type="submit" name="submit" />
-					</li>
+					</Filter>
 				</ul>
 			</form>
 		</div>

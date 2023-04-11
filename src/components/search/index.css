@@ -7,9 +7,17 @@
 }
 
 .search__icon {
+	border-radius: 0.75rem;
+	display: grid;
+	padding: 0.5rem;
+	place-content: center;
 	position: absolute;
-	right: 1rem;
-	top: 52.5%;
+	right: 0.5rem;
+	top: 1.75rem;
+}
+
+.search__icon:hover {
+	background-color: var(--neutral-200);
 }
 
 .search .input {

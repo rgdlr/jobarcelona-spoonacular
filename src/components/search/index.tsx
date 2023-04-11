@@ -1,15 +1,10 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { Input, Label } from "../../components";
 import { useOnBlur, useStateWithDebounce } from "../../hooks";
+import { Autocomplete } from "../../interfaces";
 import "./index.css";
 
-interface Autocomplete {
-	id: string;
-	imageType: string;
-	title: string;
-}
-
-export function Search({ onSearch }: { onSearch: (search: string) => void }) {
+export function Search({ onSearch }: { onSearch: (search: string) => void }): JSX.Element {
 	const searchRef = useRef(null);
 	const [show, setShow] = useState(false);
 	const [searchWithDebounce, setSearchWithDebounce, search, setSearch] = useStateWithDebounce("");

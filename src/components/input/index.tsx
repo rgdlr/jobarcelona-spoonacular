@@ -1,5 +1,10 @@
+import { InputHTMLAttributes } from "react";
+import { computeClassNames } from "../../utils";
 import "./index.css";
 
-export function Input(attributes: any) {
-	return <input {...attributes} className="input" />;
+export interface CustomInputAttributes extends InputHTMLAttributes<HTMLInputElement> {}
+
+export function Input(attributes: CustomInputAttributes): JSX.Element {
+	const { className, ...restAttributes } = attributes;
+	return <input {...restAttributes} className={computeClassNames("input", className)} />;
 }
