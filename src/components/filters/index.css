@@ -125,16 +125,19 @@
 	border-radius: 5rem;
 	content: "";
 	height: 0.2rem;
-	left: 50%;
 	position: absolute;
-	top: 50%;
-	width: 75%;
 }
 
 .filters__input[type="checkbox"]:checked::before {
+	left: 60%;
+	top: 50%;
 	transform: translate(-50%, -50%) rotate(-45deg);
+	width: 75%;
 }
 
 .filters__input[type="checkbox"]:checked::after {
+	left: 30%;
+	top: 65%;
 	transform: translate(-50%, -50%) rotate(45deg);
+	width: 35%;
 }
