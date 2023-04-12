@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 import { Card } from "../../components";
-import { Recipe } from "../../interfaces/recipes";
+import { RandomRecipe } from "../../interfaces";
 import { computeClassNames } from "../../utils";
 import "./index.css";
 
@@ -8,7 +8,7 @@ export interface CardsAttributes<T> extends HTMLAttributes<HTMLUListElement> {
 	items?: T;
 }
 
-export function Cards(attributes: CardsAttributes<Recipe[]>): JSX.Element {
+export function Cards(attributes: CardsAttributes<RandomRecipe[]>): JSX.Element {
 	const { children, className, items, ...restAttributes } = attributes;
 
 	return (

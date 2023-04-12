@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Cards, Loader, SearchBar } from "../../components";
 import { useFetch, useMocks } from "../../hooks";
-import { RecipesResponse } from "../../interfaces";
+import { RandomRecipesResponse } from "../../interfaces";
 
 useMocks();
 
 export function Home() {
-	const { data: recipesResponse } = useFetch<RecipesResponse>("recipes/random?number=15");
+	const { data: randomRecipesResponse } = useFetch<RandomRecipesResponse>("recipes/random?number=15");
 	const [searchData, setSearchData] = useState([]);
 
 	const updateData = (data: any) => {
@@ -17,10 +17,10 @@ export function Home() {
 		<>
 			<SearchBar onSearch={updateData} />
 			{!searchData &&
-				(recipesResponse ? (
-					<Cards items={recipesResponse?.recipes?.filter((_recipe, index) => index < 25)} />
-				) : (
+				(!randomRecipesResponse ? (
 					<Loader />
+				) : (
+					<Cards items={randomRecipesResponse?.recipes?.filter((_recipe, index) => index < 25)} />
 				))}
 			{searchData && <Cards items={searchData} />}
 		</>
