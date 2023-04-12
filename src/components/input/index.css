@@ -5,6 +5,7 @@
 	display: block;
 	padding: 1rem;
 	position: relative;
+	max-width: 60vw;
 }
 
 .input ~ :not(.label--bottom) {

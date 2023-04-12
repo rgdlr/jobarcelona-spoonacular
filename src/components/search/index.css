@@ -16,13 +16,14 @@
 	top: 1.75rem;
 }
 
-.search__icon:hover {
+.search__icon:hover,
+.search__icon:focus-visible {
 	background-color: var(--neutral-200);
 }
 
 .search .input {
 	border-radius: 1rem;
-	padding-right: 2.5rem;
+	padding-right: 2.75rem;
 	transition-property: border, border-radius;
 	transition-duration: 125ms;
 	transition-timing-function: ease;
@@ -54,6 +55,7 @@
 }
 
 .search__predictions--show {
+	min-height: 10rem;
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0);
