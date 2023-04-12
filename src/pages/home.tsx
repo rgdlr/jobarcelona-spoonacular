@@ -2,11 +2,10 @@ import { useState } from "react";
 import { Cards, Loader, SearchBar } from "../components";
 import { useFetch, useMocks } from "../hooks";
 import { RecipesResponse } from "../interfaces";
-import { Layout } from "../layout";
 
 useMocks();
 
-export function App() {
+export function Home() {
 	const { data: recipesResponse } = useFetch<RecipesResponse>("recipes/random?number=15");
 	const [searchData, setSearchData] = useState([]);
 
@@ -15,7 +14,7 @@ export function App() {
 	};
 
 	return (
-		<Layout>
+		<>
 			<SearchBar onSearch={updateData} />
 			{!searchData &&
 				(recipesResponse ? (
@@ -24,6 +23,6 @@ export function App() {
 					<Loader />
 				))}
 			{searchData && <Cards items={searchData} />}
-		</Layout>
+		</>
 	);
 }
