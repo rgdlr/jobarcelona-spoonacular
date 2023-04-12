@@ -6,7 +6,7 @@ import { Home, NotFound, Recipe } from "../pages";
 export function Router(attributes: PropsWithChildren) {
 	const { children } = attributes;
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/jb-sa">
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Home />} />
