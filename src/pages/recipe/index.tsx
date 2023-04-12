@@ -25,7 +25,7 @@ export function Recipe() {
 						{recipe.dishTypes?.at(0) && (
 							<div className="recipe__type">{recipe.dishTypes?.at(0) || "?"}</div>
 						)}
-						<div className="recipe__score">{recipe.spoonacularScore}</div>
+						<div className="recipe__score">{recipe.spoonacularScore || "?"}</div>
 						<div className="recipe__info">
 							<h2 className="recipe__title">{recipe.title}</h2>
 							<div className="recipe__data">
