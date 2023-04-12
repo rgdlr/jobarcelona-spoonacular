@@ -14,7 +14,7 @@ export function Card(attributes: CardAttributes<RandomRecipe>): JSX.Element {
 	const navigate = useNavigate();
 
 	const goToRecipe = () => {
-		navigate(`/recipes/${item?.id}`);
+		navigate(`recipes/${item?.id}`);
 	};
 
 	return (

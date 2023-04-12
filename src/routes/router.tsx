@@ -10,8 +10,8 @@ export function Router(attributes: PropsWithChildren) {
 			<Routes>
 				<Route path="/" element={<Layout />}>
 					<Route index element={<Home />} />
-					<Route path="/recipes" element={<Home />} />
-					<Route path="/recipes/:id" element={<Recipe />} />
+					<Route path="recipes" element={<Home />} />
+					<Route path="recipes/:id" element={<Recipe />} />
 					<Route path="*" element={<NotFound />} />
 					{children}
 				</Route>
