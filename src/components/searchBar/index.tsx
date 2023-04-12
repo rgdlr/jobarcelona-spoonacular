@@ -28,7 +28,7 @@ export function SearchBar(attributes: SearchBarAttributes<any>): JSX.Element {
 			return;
 		}
 		const url =
-			"/recipes/complexSearch" +
+			"recipes/complexSearch" +
 			filterSearch +
 			(filterSearch ? `&${textSearch}` : `?${textSearch}`);
 		fetch(url)
