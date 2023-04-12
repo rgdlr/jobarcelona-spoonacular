@@ -3,6 +3,7 @@ import { Filter } from "../../components";
 import { Filter as FilterT, filtersList } from "../../constants";
 import { useOnBlur } from "../../hooks";
 import { Filter as FilterI } from "../../interfaces";
+import { computeClassNames } from "../../utils";
 import "./index.css";
 
 export interface FiltersAttributes<T> extends HTMLAttributes<HTMLUListElement> {
@@ -17,7 +18,7 @@ export function Filters(attributes: FiltersAttributes<FilterI[]>): JSX.Element {
 	const [show, setShow] = useState(false);
 	useOnBlur(filtersRef, () => setShow(false), show);
 
-	const toggleShow = (_event: any) => setShow((prevShow) => !prevShow);
+	const toggleShow = () => setShow((prevShow) => !prevShow);
 	const onFilter = (event: FormEvent) => {
 		event.preventDefault();
 		const form = event.target as HTMLFormElement;
@@ -48,8 +49,15 @@ export function Filters(attributes: FiltersAttributes<FilterI[]>): JSX.Element {
 				</svg>
 			</button>
 			<form onSubmit={onFilter}>
-				<ul className={`filters__list filters__list--${show ? "show" : "hidden"}`}>
+				<ul
+					{...restAttributes}
+					className={computeClassNames(
+						"filters__list",
+						`filters__list--${show ? "show" : "hidden"}`,
+						className
+					)}>
 					{items && items?.map((item) => <Filter item={item} key={item.id} />)}
+					{children}
 					<Filter>
 						<input className="filters__input" type="reset" name="reset" />
 						<input className="filters__input" type="submit" name="submit" />

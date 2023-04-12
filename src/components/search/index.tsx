@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import { Input, Label } from "../../components";
 import { useOnBlur, useStateWithDebounce } from "../../hooks";
 import { Autocomplete } from "../../interfaces";
@@ -12,7 +12,7 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 
 	useOnBlur(searchRef, () => setShow(false), show);
 
-	const updatePredictions = (event: any) => {
+	const updatePredictions = (event: ChangeEvent<HTMLInputElement>) => {
 		setSearch(event.target.value);
 
 		const hasContent = !/^\s*$/g.test(event.target.value);
@@ -26,15 +26,15 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 		window.history.replaceState(null, "", url);
 	};
 
-	const updateSearch = (event: any) => {
-		const updatedSearch = event.target.innerText;
+	const updateSearch = (event: MouseEvent<HTMLButtonElement>) => {
+		const updatedSearch = (event.target as HTMLButtonElement).innerText;
 		setSearch(updatedSearch);
 
 		const url = new URL(window.location.href);
-		url.searchParams.set("query", event.target.innerText);
+		url.searchParams.set("query", updatedSearch);
 		window.history.replaceState(null, "", url);
 
-		onSearch(`query=${event.target.innerText}`);
+		onSearch(`query=${updatedSearch}`);
 	};
 
 	const doSearch = (event: FormEvent) => {

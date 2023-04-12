@@ -1,9 +1,16 @@
-import { useEffect, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { Filters, Search } from "../../components";
 import { filtersList } from "../../constants";
 import "./index.css";
+import { computeClassNames } from "../../utils";
 
-export function SearchBar({ onSearch }: { onSearch: (results: any) => void }): JSX.Element {
+export interface SearchBarAttributes<T> extends HTMLAttributes<HTMLElement> {
+	onSearch?(results: T): void;
+}
+
+export function SearchBar(attributes: SearchBarAttributes<any>): JSX.Element {
+	const { children, className, onSearch, ...restAttributes } = attributes;
+
 	const [textSearch, setTextSearch] = useState("");
 	const [filterSearch, setFilterSearch] = useState("");
 
@@ -17,7 +24,7 @@ export function SearchBar({ onSearch }: { onSearch: (results: any) => void }): J
 
 	useEffect(() => {
 		if (!textSearch && !filterSearch) {
-			onSearch([]);
+			onSearch && onSearch([]);
 			return;
 		}
 		const url =
@@ -26,13 +33,14 @@ export function SearchBar({ onSearch }: { onSearch: (results: any) => void }): J
 			(filterSearch ? `&${textSearch}` : `?${textSearch}`);
 		fetch(url)
 			.then((data) => data.json())
-			.then((data) => onSearch(data));
+			.then((data) => onSearch && onSearch(data));
 	}, [textSearch, filterSearch]);
 
 	return (
-		<div className="search-bar">
+		<section {...restAttributes} className={computeClassNames("search-bar", className)}>
 			<Search onSearch={onTextSearch} />
 			<Filters onSearch={onFilterSearch} items={filtersList} />
-		</div>
+			{children}
+		</section>
 	);
 }

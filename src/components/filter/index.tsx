@@ -8,7 +8,7 @@ export interface FilterAttributes<T> extends HTMLAttributes<HTMLLIElement> {
 	item?: T;
 }
 
-export function Filter<T>(attributes: FilterAttributes<FilterI>): JSX.Element {
+export function Filter(attributes: FilterAttributes<FilterI>): JSX.Element {
 	const { children, className, item, ...restAttributes } = attributes;
 
 	return (
