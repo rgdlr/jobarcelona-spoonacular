@@ -1,5 +1,9 @@
 .header {
+	align-items: center;
 	background-color: var(--neutral-100);
+	display: flex;
+	font-weight: bold;
+	gap: 1rem;
 	padding: 2rem;
 	position: sticky;
 	top: 0;

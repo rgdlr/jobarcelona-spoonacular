@@ -65,14 +65,11 @@
 
 .card__time,
 .card__likes {
+	align-items: center;
+	border-radius: 5rem;
 	display: flex;
 	gap: 0.25rem;
 	padding: 0.25rem 0.5rem;
-	border-radius: 5rem;
-}
-
-.card__likes:hover {
-	background-color: var(--red-100);
 }
 
 .card__title {
