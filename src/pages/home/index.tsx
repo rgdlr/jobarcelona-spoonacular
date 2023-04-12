@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Cards, Loader, SearchBar } from "../components";
-import { useFetch, useMocks } from "../hooks";
-import { RecipesResponse } from "../interfaces";
+import { Cards, Loader, SearchBar } from "../../components";
+import { useFetch, useMocks } from "../../hooks";
+import { RecipesResponse } from "../../interfaces";
 
 useMocks();
 
