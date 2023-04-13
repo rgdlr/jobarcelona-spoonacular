@@ -7,7 +7,7 @@ import "./index.css";
 export function Search({ onSearch }: { onSearch: (search: string) => void }): JSX.Element {
 	const searchRef = useRef(null);
 	const [show, setShow] = useState(false);
-	const [searchWithDebounce, setSearchWithDebounce, search, setSearch] = useStateWithDebounce("");
+	const [searchWithDebounce, , search, setSearch] = useStateWithDebounce("");
 	const [predictions, setPredictions] = useState<Autocomplete[]>([]);
 
 	useOnBlur(searchRef, () => setShow(false), show);

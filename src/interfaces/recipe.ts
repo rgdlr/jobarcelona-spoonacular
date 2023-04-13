@@ -13,18 +13,18 @@ export interface Recipe {
 	healthScore?: number;
 	spoonacularScore?: number;
 	pricePerServing?: number;
-	analyzedInstructions?: null[] | null;
+	analyzedInstructions?: null[];
 	cheap?: boolean;
 	creditsText?: string;
-	cuisines?: null[] | null;
+	cuisines?: null[];
 	dairyFree?: boolean;
-	diets?: null[] | null;
+	diets?: null[];
 	gaps?: string;
 	glutenFree?: boolean;
 	instructions?: string;
 	ketogenic?: boolean;
 	lowFodmap?: boolean;
-	occasions?: null[] | null;
+	occasions?: null[];
 	sustainable?: boolean;
 	vegan?: boolean;
 	vegetarian?: boolean;
@@ -32,8 +32,8 @@ export interface Recipe {
 	veryPopular?: boolean;
 	whole30?: boolean;
 	weightWatcherSmartPoints?: number;
-	dishTypes?: string[] | null;
-	extendedIngredients?: ExtendedIngredients[] | null;
+	dishTypes?: string[];
+	extendedIngredients?: ExtendedIngredients[];
 	summary?: string;
 	winePairing?: WinePairing;
 }
@@ -44,7 +44,7 @@ export interface RandomRecipe {
 	cheap?: boolean;
 	cookingMinutes?: number;
 	creditsText?: string;
-	cuisines?: any[];
+	cuisines?: unknown[];
 	dairyFree?: boolean;
 	diets?: string[];
 	dishTypes?: string[];
@@ -58,8 +58,8 @@ export interface RandomRecipe {
 	instructions?: string;
 	license?: string;
 	lowFodmap?: boolean;
-	occasions?: any[];
-	originalId?: any;
+	occasions?: unknown[];
+	originalId?: unknown;
 	preparationMinutes?: number;
 	pricePerServing?: number;
 	readyInMinutes?: number;
@@ -84,7 +84,7 @@ export interface ExtendedIngredients {
 	id?: number;
 	image?: string;
 	measures?: Measures;
-	meta?: (string | null)[] | null;
+	meta?: string[];
 	name?: string;
 	original?: string;
 	originalName?: string;
@@ -103,9 +103,9 @@ export interface MetricOrUs {
 }
 
 export interface WinePairing {
-	pairedWines?: string[] | null;
+	pairedWines?: string[];
 	pairingText?: string;
-	productMatches?: ProductMatches[] | null;
+	productMatches?: ProductMatches[];
 }
 export interface ProductMatches {
 	id?: number;
@@ -161,4 +161,17 @@ export interface EquipmentOrIngredient {
 export interface Length {
 	number?: number;
 	unit?: string;
+}
+
+export interface RecipeComplexSearch {
+	results?: RecipeComplexSearchResults[];
+	offset?: number;
+	number?: number;
+	totalResults?: number;
+}
+export interface RecipeComplexSearchResults {
+	id?: number;
+	title?: string;
+	image?: string;
+	imageType?: string;
 }
