@@ -20,7 +20,7 @@ npm run dev
 
 ## Demo
 
-Visit an app demo at [website](https://rgdlr.github.io/jobarcelona).
+Visit an app demo at [website](https://rgdlr.github.io/jb-sa).
 
 ## Contributing
 
