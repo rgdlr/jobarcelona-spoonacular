@@ -35,5 +35,5 @@ Please make sure to update tests as appropriate.
 
 ## Hackathon information
 
-- [Website](https://nuwe.io/dev/competitions/job-barcelona-23)
-- [Website](https://nuwe.io/dev/competitions/job-barcelona-23/jobarcelona-23-frontend)
+- [Nuwe Jobarcelona](https://nuwe.io/dev/competitions/job-barcelona-23)
+- [Nuwe Jobarcelona Frontend](https://nuwe.io/dev/competitions/job-barcelona-23/jobarcelona-23-frontend)
