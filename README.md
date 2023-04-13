@@ -1,6 +1,6 @@
-# (🥄) JOBarcelona · Spoonacular
+# ( 🥄 ) JOBarcelona · Spoonacular
 
-> Jobarcelona-spoonacular is used for discovering recipes from all over the world
+> Jobarcelona-spoonacular is used for discovering recipes from all over the world.
 
 The repository is a frontend project which includes a web application for discovering recipes. This is achieved using a random generator and providing a search and filter system for making queries. Data is retrieved from the [Spoonacular Food API](https://spoonacular.com/food-api).
 
@@ -38,7 +38,7 @@ Please make sure to update tests as appropriate.
 ## Stack
 
 The project is developed using:
-- **React** for flexibility, a good developer experience and community support.
+- **React** for flexibility, developer experience and community support.
 - **Typescript** for getting superior IntelliSense, code completion using JSX with React and decreasing the amount unexpected errors.
 
 ## Dependencies
@@ -53,7 +53,7 @@ The project is developed using:
 
 ## License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ---
 
