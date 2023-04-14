@@ -15,21 +15,12 @@ export function SearchBar(attributes: SearchBarAttributes<Recipe[]>): JSX.Elemen
 	const [textSearch, setTextSearch] = useState("");
 	const [filterSearch, setFilterSearch] = useState("");
 
-	const onTextSearch = (search: string) => {
-		setTextSearch(search);
-	};
-
-	const onFilterSearch = (search: string) => {
-		setFilterSearch(search);
-	};
-
 	useEffect(() => {
 		if (!textSearch && !filterSearch) {
 			onSearch && onSearch([]);
 			return;
 		}
-		const url =
-			"recipes/complexSearch" + filterSearch + (filterSearch ? `&${textSearch}` : `?${textSearch}`);
+		const url = "recipes/complexSearch" + filterSearch + (filterSearch ? `&${textSearch}` : `?${textSearch}`);
 		fetch(url)
 			.then((data) => data.json())
 			.then((data) => onSearch && onSearch(data));
@@ -37,8 +28,8 @@ export function SearchBar(attributes: SearchBarAttributes<Recipe[]>): JSX.Elemen
 
 	return (
 		<section {...restAttributes} className={computeClassNames("search-bar", className)}>
-			<Search onSearch={onTextSearch} />
-			<Filters onSearch={onFilterSearch} items={filtersList} />
+			<Search onSearch={setTextSearch} />
+			<Filters onSearch={setFilterSearch} items={filtersList} />
 			{children}
 		</section>
 	);
