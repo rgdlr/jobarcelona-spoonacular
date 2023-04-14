@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Cards, Loader, SearchBar } from "../../components";
-import { useFetch, useMocks } from "../../hooks";
+import { useFetch } from "../../hooks";
 import { RandomRecipesResponse } from "../../interfaces";
+import { enableMockInterceptor } from "../../utils";
 
-useMocks();
+enableMockInterceptor();
 
 export function Home() {
-	const { data: randomRecipesResponse } = useFetch<RandomRecipesResponse>("recipes/random?number=15");
+	const { data: randomRecipesResponse } = useFetch<RandomRecipesResponse>(
+		"recipes/random?number=15"
+	);
 	const [searchData, setSearchData] = useState([]);
 
 	const updateData = (data: any) => {

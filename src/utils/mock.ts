@@ -1,7 +1,7 @@
-import { useInterceptor } from "../hooks";
+import { interceptor } from "../utils";
 
-export function useMocks() {
-	useInterceptor((input, init) => {
+export function enableMockInterceptor() {
+	interceptor((input, init) => {
 		const entryPoint = import.meta.env.VITE_SPOONACULAR_ENTRY_POINT;
 		const apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
 		const isInDevelopmentMode = import.meta.env.MODE === "development";
