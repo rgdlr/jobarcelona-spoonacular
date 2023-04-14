@@ -21,6 +21,7 @@
 }
 
 .recipe__image {
+	height: 100%;
 	object-fit: cover;
 	width: 100%;
 }
@@ -61,7 +62,6 @@
 	background-color: var(--violet-600);
 	border-radius: 5rem;
 	color: var(--neutral-100);
-	font-weight: bold;
 	left: 0;
 	margin: 1rem;
 	min-width: 2rem;
@@ -72,16 +72,20 @@
 }
 
 .recipe__score {
-	aspect-ratio: 1;
 	background-color: var(--neutral-100);
 	border-radius: 5rem;
 	box-shadow: -0.125rem 0.125rem 2.5rem 0.25rem var(--neutral-800);
 	color: var(--neutral-800);
+	display: grid;
+	font-size: 0.9rem;
 	font-weight: bold;
+	height: 2.5rem;
 	padding: 0.75rem;
+	place-content: center;
 	position: absolute;
 	right: 1rem;
 	top: 1rem;
+	width: 2.5rem;
 }
 
 .recipe__data {

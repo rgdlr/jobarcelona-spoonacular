@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Loader } from "../../components";
 import { Recipe as RecipeI } from "../../interfaces";
 import "./index.css";
-import { Loader } from "../../components";
 
 export function Recipe() {
 	const { id: recipeId } = useParams();
@@ -25,7 +25,9 @@ export function Recipe() {
 						{recipe.dishTypes?.at(0) && (
 							<div className="recipe__type">{recipe.dishTypes?.at(0) || "?"}</div>
 						)}
-						<div className="recipe__score">{recipe.spoonacularScore || "?"}</div>
+						{recipe.spoonacularScore && (
+							<div className="recipe__score">{recipe.spoonacularScore}</div>
+						)}
 						<div className="recipe__info">
 							<h2 className="recipe__title">{recipe.title}</h2>
 							<div className="recipe__data">
