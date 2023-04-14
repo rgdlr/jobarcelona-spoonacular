@@ -1,6 +1,7 @@
 .card {
 	background-color: var(--neutral-100);
 	border-radius: 1rem;
+	border: 0.1rem solid var(--neutral-300);
 	color: var(--neutral-800);
 	cursor: default;
 	display: flex;
@@ -28,6 +29,7 @@
 	inset: 0;
 	place-content: center;
 	position: absolute;
+	transition: transform 250ms ease;
 }
 
 .card__image {
@@ -37,8 +39,9 @@
 	transition-timing-function : ease;
 }
 
-.card:hover .card__image {
-	filter: saturate(1.25);
+.card:hover .card__image,
+.card:hover .card__picture::before {
+	filter: saturate(1.15);
 	transform: scale(1.05);
 }
 
