@@ -1,5 +1,6 @@
 .header {
 	background-color: var(--neutral-100);
+	box-shadow: 0 0 0.75rem 0.125rem var(--neutral-200);
 	padding: 2rem;
 	position: sticky;
 	top: 0;
