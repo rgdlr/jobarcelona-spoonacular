@@ -14,7 +14,7 @@ export function Cards(attributes: CardsAttributes<RandomRecipe[]>): JSX.Element 
 	return (
 		<ul {...restAttributes} className={computeClassNames("cards", className)}>
 			{items?.map((item) => (
-				<Card item={item} key={item.id}></Card>
+				<Card item={item} key={item.id} />
 			))}
 			{children}
 		</ul>

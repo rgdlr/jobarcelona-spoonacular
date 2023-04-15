@@ -14,7 +14,7 @@ export function Recipe() {
 			{recipe && (
 				<>
 					<div className="recipe__cover">
-						<img className="recipe__image" src={recipe.image}></img>
+						<img className="recipe__image" src={recipe.image} />
 						{recipe.dishTypes?.at(0) && (
 							<div className="recipe__type">{recipe.dishTypes?.at(0) || "?"}</div>
 						)}
@@ -84,7 +84,7 @@ export function Recipe() {
 					</h3>
 					<div
 						className="recipe__summary"
-						dangerouslySetInnerHTML={{ __html: recipe.summary ?? "" }}></div>
+						dangerouslySetInnerHTML={{ __html: recipe.summary ?? "" }} />
 				</>
 			)}
 		</div>

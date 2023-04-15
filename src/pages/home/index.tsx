@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Cards, Loader, SearchBar } from "../../components";
+import { Cards, Error, Loader, SearchBar } from "../../components";
 import { getRandomRecipes } from "../../services/recipes";
 import { enableMockInterceptor } from "../../utils";
 
@@ -15,7 +15,7 @@ export function Home() {
 		<>
 			<SearchBar onSearch={updateData} />
 			{loading && <Loader />}
-			{error && error.message}
+			{error && <Error />}
 			{!searchData && (
 				<Cards items={randomRecipesResponse?.recipes?.filter((_recipe, index) => index < 25)} />
 			)}

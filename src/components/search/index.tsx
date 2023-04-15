@@ -52,7 +52,8 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 				id="search"
 				onChange={updatePredictions}
 				type="search"
-				value={search}></Input>
+				value={search}
+			/>
 			<button className="search__icon">
 				<svg
 					aria-labelledby="search"
@@ -65,7 +66,8 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 						stroke="currentColor"
 						strokeWidth="1.333"
 						strokeLinecap="round"
-						strokeLinejoin="round"></path>
+						strokeLinejoin="round"
+					/>
 				</svg>
 			</button>
 			<ul className={`search__predictions search__predictions--${show ? "show" : "hidden"}`}>

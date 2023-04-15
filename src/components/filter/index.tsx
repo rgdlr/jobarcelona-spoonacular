@@ -14,7 +14,7 @@ export function Filter(attributes: FilterAttributes<FilterI>): JSX.Element {
 	return (
 		<li {...restAttributes} className={computeClassNames("filter", className)}>
 			{item?.type === FilterT.Input && (
-				<input className="filter__input" name={item.id} placeholder={item.text}></input>
+				<input className="filter__input" name={item.id} placeholder={item.text} />
 			)}
 			{item?.type === FilterT.Checkbox && (
 				<>
