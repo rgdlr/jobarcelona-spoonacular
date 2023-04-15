@@ -41,22 +41,6 @@
 	cursor: default;
 }
 
-.filter__input:hover,
-.filter__input:focus,
-.filter__input:not(:placeholder-shown, [type="reset"], [type="submit"]),
-.filter__select:hover,
-.filter__select:focus,
-.filter__select:not(:has(.filter__option:first-child:checked)),
-.filter:has(.filter__input[type="checkbox"]):hover .filter__input[type="checkbox"] {
-	border: 0.1rem dashed var(--neutral-400);
-}
-
-.filter__input::placeholder,
-.filter__select:has(.filter__option:first-child:checked),
-.filter__option:first-child {
-	color: var(--neutral-400);
-}
-
 .filter__input[type="reset"],
 .filter__input[type="submit"] {
 	text-align: center;
@@ -96,4 +80,20 @@
 	top: 65%;
 	transform: translate(-50%, -50%) rotate(45deg);
 	width: 35%;
+}
+
+.filter__input:hover,
+.filter__input:focus,
+.filter__input:not(:placeholder-shown, [type="checkbox"], [type="reset"], [type="submit"]),
+.filter__select:hover,
+.filter__select:focus,
+.filter__select:not(:has(.filter__option:first-child:checked)),
+.filter:has(.filter__input[type="checkbox"]):hover .filter__input[type="checkbox"] {
+	border: 0.1rem dashed var(--neutral-400);
+}
+
+.filter__input::placeholder,
+.filter__select:has(.filter__option:first-child:checked),
+.filter__option:first-child {
+	color: var(--neutral-400);
 }

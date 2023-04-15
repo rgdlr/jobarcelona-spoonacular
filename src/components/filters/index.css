@@ -11,7 +11,8 @@
 	place-content: center;
 }
 
-.filters__button:hover {
+.filters__button:hover,
+.filters__button:focus-visible {
 	background-color: var(--neutral-200);
 }
 
