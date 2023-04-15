@@ -58,7 +58,7 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 	return (
 		<form autoComplete="false" className="search" ref={searchRef} onSubmit={doSearch}>
 			<Label htmlFor="search">Search</Label>
-			<Input id="search" onChange={updatePredictions} type="search" value={search}></Input>
+			<Input autoComplete="off" id="search" onChange={updatePredictions} type="search" value={search}></Input>
 			<button className="search__icon">
 				<svg
 					aria-labelledby="search"
