@@ -6,6 +6,7 @@ export type {
 	RandomRecipe,
 	RandomRecipesResponse,
 	Recipe,
+	RecipeAutocomplete,
 	RecipeComplexSearch,
 	RecipeComplexSearchResults
 } from "./recipe";

@@ -77,6 +77,12 @@ export interface RandomRecipe {
 	weightWatcherSmartPoints?: number;
 }
 
+export interface RecipeAutocomplete {
+	id?: number;
+	title?: string;
+	imageType?: string;
+}
+
 export interface ExtendedIngredients {
 	aisle?: string;
 	amount?: number;
