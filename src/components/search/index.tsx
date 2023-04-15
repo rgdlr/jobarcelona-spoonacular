@@ -1,16 +1,16 @@
 import { ChangeEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import { Input, Label } from "../../components";
 import { useOnBlur, useStateWithDebounce } from "../../hooks";
-import { Autocomplete } from "../../interfaces";
+import { getRecipesAutocomplete } from "../../services";
 import "./index.css";
 
 export function Search({ onSearch }: { onSearch: (search: string) => void }): JSX.Element {
 	const searchRef = useRef(null);
-	const [show, setShow] = useState(false);
 	const [searchWithDebounce, , search, setSearch] = useStateWithDebounce("");
-	const [predictions, setPredictions] = useState<Autocomplete[]>([]);
-
+	const [show, setShow] = useState(false);
 	useOnBlur(searchRef, () => setShow(false), show);
+
+	const { data: predictions } = getRecipesAutocomplete({ query: searchWithDebounce });
 
 	const updatePredictions = (event: ChangeEvent<HTMLInputElement>) => {
 		setSearch(event.target.value);
@@ -42,23 +42,17 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 		search ? onSearch(`query=${search}`) : onSearch("");
 	};
 
-	useEffect(() => {
-		if (!searchWithDebounce) {
-			return;
-		}
-		fetch(`recipes/autocomplete?number=5&query=${searchWithDebounce}`)
-			.then((data) => data.json())
-			.then((data) => {
-				setPredictions(data);
-				setShow(Boolean(data?.length));
-			});
-		return () => setPredictions([]);
-	}, [searchWithDebounce]);
+	useEffect(() => setShow(Boolean(predictions?.length)), [predictions]);
 
 	return (
 		<form autoComplete="false" className="search" ref={searchRef} onSubmit={doSearch}>
 			<Label htmlFor="search">Search</Label>
-			<Input autoComplete="off" id="search" onChange={updatePredictions} type="search" value={search}></Input>
+			<Input
+				autoComplete="off"
+				id="search"
+				onChange={updatePredictions}
+				type="search"
+				value={search}></Input>
 			<button className="search__icon">
 				<svg
 					aria-labelledby="search"
@@ -75,7 +69,7 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 				</svg>
 			</button>
 			<ul className={`search__predictions search__predictions--${show ? "show" : "hidden"}`}>
-				{predictions.map((prediction) => (
+				{predictions?.map((prediction) => (
 					<li className="search__prediction" key={prediction.id}>
 						<button className="search__prediction-button" onMouseDown={updateSearch}>
 							{prediction.title}

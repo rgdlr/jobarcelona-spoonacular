@@ -1,24 +1,17 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Loader } from "../../components";
-import { Recipe as RecipeI } from "../../interfaces";
+import { Error, Loader } from "../../components";
+import { getRecipeInformation } from "../../services";
 import "./index.css";
 
 export function Recipe() {
-	const { id: recipeId } = useParams();
-	const [recipe, setRecipe] = useState<RecipeI>();
-
-	useEffect(() => {
-		fetch(`recipes/${recipeId}/information`)
-			.then((data) => data.json())
-			.then((data) => setRecipe(data));
-	}, []);
+	const { id = "" } = useParams();
+	const { data: recipe, error, loading } = getRecipeInformation({ id });
 
 	return (
 		<div className="recipe">
-			{!recipe ? (
-				<Loader />
-			) : (
+			{loading && <Loader />}
+			{error && <Error />}
+			{recipe && (
 				<>
 					<div className="recipe__cover">
 						<img className="recipe__image" src={recipe.image}></img>

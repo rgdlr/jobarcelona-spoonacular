@@ -2,6 +2,7 @@ import { HTMLAttributes, useEffect, useState } from "react";
 import { Filters, Search } from "../../components";
 import { filtersList } from "../../constants";
 import { Recipe } from "../../interfaces";
+import { getRecipesSearch } from "../../services";
 import { computeClassNames } from "../../utils";
 import "./index.css";
 
@@ -14,17 +15,9 @@ export function SearchBar(attributes: SearchBarAttributes<Recipe[]>): JSX.Elemen
 
 	const [textSearch, setTextSearch] = useState("");
 	const [filterSearch, setFilterSearch] = useState("");
+	const { data } = getRecipesSearch({ filterSearch, textSearch });
 
-	useEffect(() => {
-		if (!textSearch && !filterSearch) {
-			onSearch && onSearch([]);
-			return;
-		}
-		const url = "recipes/complexSearch" + filterSearch + (filterSearch ? `&${textSearch}` : `?${textSearch}`);
-		fetch(url)
-			.then((data) => data.json())
-			.then((data) => onSearch && onSearch(data));
-	}, [textSearch, filterSearch]);
+	useEffect(() => onSearch && onSearch(data ?? []), [data]);
 
 	return (
 		<section {...restAttributes} className={computeClassNames("search-bar", className)}>
