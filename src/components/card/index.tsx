@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 import { useNavigate } from "react-router-dom";
-import { RandomRecipe } from "../../interfaces";
+import { RandomRecipe, Recipe } from "../../interfaces";
 import { computeClassNames } from "../../utils";
 import "./index.css";
 
@@ -8,7 +8,7 @@ export interface CardAttributes<T> extends HTMLAttributes<HTMLLIElement> {
 	item?: T;
 }
 
-export function Card(attributes: CardAttributes<RandomRecipe>): JSX.Element {
+export function Card(attributes: CardAttributes<RandomRecipe | Recipe>): JSX.Element {
 	const { children, className, item, ...restAttributes } = attributes;
 
 	const navigate = useNavigate();

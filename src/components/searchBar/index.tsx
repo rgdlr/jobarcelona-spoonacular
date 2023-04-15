@@ -17,7 +17,7 @@ export function SearchBar(attributes: SearchBarAttributes<Recipe[]>): JSX.Elemen
 	const [filters, setFilter] = useState("");
 	const { data } = getRecipesSearch({ filters, query });
 
-	useEffect(() => onSearch && onSearch(data ?? []), [data]);
+	useEffect(() => onSearch && onSearch(data?.results ?? []), [data]);
 
 	return (
 		<section {...restAttributes} className={computeClassNames("search-bar", className)}>

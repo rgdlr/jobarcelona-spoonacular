@@ -1,5 +1,11 @@
 import { useHttp } from "../hooks";
-import { RandomRecipesResponse, Recipe, RecipeAutocomplete, UseHttp } from "../interfaces";
+import {
+	RandomRecipesResponse,
+	Recipe,
+	RecipeAutocomplete,
+	RecipeComplexSearch,
+	UseHttp
+} from "../interfaces";
 
 export function getRandomRecipes({ number = 25 } = {}): UseHttp<RandomRecipesResponse> {
 	return useHttp<RandomRecipesResponse>(`recipes/random?number=${number}`);
@@ -19,8 +25,8 @@ export function getRecipesAutocomplete({ number = 5, query = "" } = {}): UseHttp
 	);
 }
 
-export function getRecipesSearch({ filters = "", query = "" } = {}): UseHttp<Recipe[]> {
-	return useHttp<Recipe[]>(
+export function getRecipesSearch({ filters = "", query = "" } = {}): UseHttp<RecipeComplexSearch> {
+	return useHttp<RecipeComplexSearch>(
 		`recipes/complexSearch${filters}${filters ? `&${query}` : `?${query}`}`,
 		undefined,
 		{
