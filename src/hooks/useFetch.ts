@@ -1,7 +1,21 @@
 import { useEffect, useState } from "react";
 import { UseFetch } from "../interfaces";
+import { useIsFirstRender } from "../hooks";
 
-export function useFetch<Type>(input: RequestInfo | URL, init?: RequestInit | undefined): UseFetch<Type> {
+export interface UseFetchOptions {
+	onFirstRender?: boolean;
+	meetsRestrictions?: boolean;
+}
+
+export function useFetch<Type>(
+	input: RequestInfo | URL,
+	init?: RequestInit | undefined,
+	options?: UseFetchOptions
+): UseFetch<Type> {
+	const { onFirstRender = true, meetsRestrictions = true } = options ?? {};
+
+	const isFirstRender = useIsFirstRender();
+
 	const [controller, setController] = useState<AbortController>();
 	const [data, setData] = useState<Type>();
 	const [error, setError] = useState<Error>();
@@ -20,12 +34,16 @@ export function useFetch<Type>(input: RequestInfo | URL, init?: RequestInit | un
 		return false;
 	};
 
-	const responseToJson = (response: Response) => setFetch(undefined, undefined, true) || response.json();
+	const responseToJson = (response: Response) =>
+		setFetch(undefined, undefined, true) || response.json();
 	const jsonToData = (json: Type) => setFetch(json, undefined, false);
 	const responseToError = (error: Error) => setFetch(undefined, error, false);
 	const setLoadingOff = () => setLoading(false);
 
 	useEffect(() => {
+		if (isFirstRender && !onFirstRender) return;
+		if (!meetsRestrictions) return;
+
 		const abortController = new AbortController();
 		setController(abortController);
 
@@ -36,7 +54,7 @@ export function useFetch<Type>(input: RequestInfo | URL, init?: RequestInit | un
 			.finally(setLoadingOff);
 
 		return () => abortController.abort();
-	}, []);
+	}, [input]);
 
 	return { abort, data, error, loading };
 }
