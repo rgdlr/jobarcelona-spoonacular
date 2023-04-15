@@ -1,0 +1,94 @@
+@keyframes error__dash {
+	0%,
+	30% {
+		fill: 4B4B62;
+		stroke-dashoffset: 0;
+	}
+	80%,
+	100% {
+		fill: transparent;
+		stroke-dashoffset: -200;
+	}
+}
+
+@keyframes error__scales {
+	from {
+		transform: scale(0.98);
+	}
+	to {
+		transform: scale(1);
+	}
+}
+
+@keyframes error__rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	50%,
+	60% {
+		transform: rotate(-20deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes error__eyes {
+	0% {
+		transform: rotateX(0deg);
+	}
+	100% {
+		transform: rotateX(30deg);
+	}
+}
+
+@keyframes error__sparks {
+	100% {
+		opacity: 0;
+	}
+}
+
+.error {
+	min-height: 600px;
+	margin: 0px auto;
+	width: auto;
+	max-width: 460px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.error__bread-bottom {
+	animation: error__rotate 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+	transform-origin: center;
+}
+
+.error__bread-top {
+	animation: error__rotate 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
+	transform-origin: center;
+}
+
+.error__eyes {
+	animation: error__eyes 2s alternate infinite;
+	transform-origin: center;
+}
+
+.error__left-sparks {
+	animation: error__sparks 4s alternate infinite;
+	transform-origin: 150px 156px;
+}
+
+.error__right-sparks {
+	animation: error__sparks 4s alternate infinite;
+	transform-origin: 310px 150px;
+}
+
+.error__path {
+	stroke-dasharray: 300;
+	stroke-dashoffset: 300;
+	animation: error__dash 4s alternate infinite;
+}
+.error__background {
+	animation: error__scales 3s alternate infinite;
+	transform-origin: center;
+}

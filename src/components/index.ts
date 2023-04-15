@@ -1,5 +1,6 @@
 export { Card } from "./card";
 export { Cards } from "./cards";
+export { Error } from "./error";
 export { Filter } from "./filter";
 export { Filters } from "./filters";
 export { Input } from "./input";
