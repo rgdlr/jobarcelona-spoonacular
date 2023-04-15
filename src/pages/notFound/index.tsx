@@ -65,9 +65,9 @@ export function NotFound() {
 						id="mouth-frown"
 						fill="none"
 						stroke="#4f3e7c"
-						stroke-linecap="round"
-						stroke-miterlimit="10"
-						stroke-width="4"
+						strokeLinecap="round"
+						strokeMiterlimit="10"
+						strokeWidth="4"
 						d="M368.4 240.8s-15.4-10.5-27.3 3.5"
 					/>
 					<g id="eyes">
@@ -77,7 +77,7 @@ export function NotFound() {
 				</g>
 			</svg>
 			<div className="not-found__go-home">
-				<Link to="/">GO HOME</Link>
+				<Link className="not-found__button" to="/">GO HOME</Link>
 			</div>
 		</div>
 	);
