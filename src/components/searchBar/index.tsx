@@ -13,16 +13,16 @@ export interface SearchBarAttributes<T> extends HTMLAttributes<HTMLElement> {
 export function SearchBar(attributes: SearchBarAttributes<Recipe[]>): JSX.Element {
 	const { children, className, onSearch, ...restAttributes } = attributes;
 
-	const [textSearch, setTextSearch] = useState("");
-	const [filterSearch, setFilterSearch] = useState("");
-	const { data } = getRecipesSearch({ filterSearch, textSearch });
+	const [query, setQuery] = useState("");
+	const [filters, setFilter] = useState("");
+	const { data } = getRecipesSearch({ filters, query });
 
 	useEffect(() => onSearch && onSearch(data ?? []), [data]);
 
 	return (
 		<section {...restAttributes} className={computeClassNames("search-bar", className)}>
-			<Search onSearch={setTextSearch} />
-			<Filters onSearch={setFilterSearch} items={filtersList} />
+			<Search onSearch={setQuery} />
+			<Filters onSearch={setFilter} items={filtersList} />
 			{children}
 		</section>
 	);

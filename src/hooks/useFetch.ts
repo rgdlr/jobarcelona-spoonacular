@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
-import { UseFetch } from "../interfaces";
 import { useIsFirstRender } from "../hooks";
-
-export interface UseFetchOptions {
-	onFirstRender?: boolean;
-	meetsRestrictions?: boolean;
-}
+import { UseHttp, UseHttpOptions } from "../interfaces";
 
 export function useFetch<Type>(
 	input: RequestInfo | URL,
 	init?: RequestInit | undefined,
-	options?: UseFetchOptions
-): UseFetch<Type> {
+	options?: UseHttpOptions
+): UseHttp<Type> {
 	const { onFirstRender = true, meetsRestrictions = true } = options ?? {};
 
 	const isFirstRender = useIsFirstRender();
