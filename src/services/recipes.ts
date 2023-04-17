@@ -19,7 +19,7 @@ export function getRecipesAutocomplete({ number = 5, query = "" } = {}): UseHttp
 	RecipeAutocomplete[]
 > {
 	return useHttp<RecipeAutocomplete[]>(
-		`recipes/autocomplete?number=${number}&${query}`,
+		`recipes/autocomplete?number=${number}&query=${query}`,
 		undefined,
 		{ onFirstRender: false, meetsRestrictions: Boolean(query.length) }
 	);
