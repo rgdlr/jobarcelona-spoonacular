@@ -1,5 +1,5 @@
 export interface UseHttp<Type> {
-	abort: () => void;
+	abort(): void;
 	data: Type | undefined;
 	error: Error | undefined;
 	loading: boolean;
