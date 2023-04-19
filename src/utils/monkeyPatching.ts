@@ -1,12 +1,9 @@
-type MonkeyPatchingObject = { [key: string | number | symbol]: any };
-type MonkeyPatchingPropertyName = string | number | symbol;
-type MonkeyPatchingPropertyPatch = (propertyPatched: any, ...args: any[]) => void;
-
-export function monkeyPatching(
-	object: MonkeyPatchingObject,
-	propertyName: MonkeyPatchingPropertyName,
-	propertyPatch: MonkeyPatchingPropertyPatch
+export function monkeyPatching<Type>(
+	object: Type,
+	propertyName: keyof Type,
+	propertyPatcher: (propertyPatched: Type[keyof Type], ...args: unknown[]) => Type[keyof Type]
 ): void {
 	const { [propertyName]: monkeyPatching } = object;
-	object[propertyName] = (...args: any[]) => propertyPatch(monkeyPatching, ...args);
+	const objectProperty = (...args: unknown[]) => propertyPatcher(monkeyPatching, ...args);
+	object[propertyName] = objectProperty as Type[keyof Type];
 }
