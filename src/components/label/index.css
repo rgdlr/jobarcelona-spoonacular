@@ -1,6 +1,6 @@
 .label {
 	transition-property: color, font-size, top;
-	transition-duration: 500ms;
+	transition-duration: 250ms;
 	transition-timing-function: ease;
 }
 
