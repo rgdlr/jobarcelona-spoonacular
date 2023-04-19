@@ -23,7 +23,7 @@
 
 .search .input {
 	border-radius: 1rem;
-	padding-right: 2.75rem;
+	padding-right: 3rem;
 	max-width: calc(100vw - 5.75rem);
 	transition-property: border, border-radius;
 	transition-duration: 125ms;
@@ -41,7 +41,6 @@
 	border: 0.1rem solid var(--neutral-300);
 	border-top: transparent;
 	cursor: default;
-	margin-top: -0.5rem;
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
