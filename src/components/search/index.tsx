@@ -1,4 +1,12 @@
-import { ChangeEvent, FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
+import {
+	ChangeEvent,
+	FormEvent,
+	KeyboardEvent,
+	MouseEvent,
+	useEffect,
+	useRef,
+	useState
+} from "react";
 import { Input, Label } from "../../components";
 import { useOnBlur, useStateWithDebounce } from "../../hooks";
 import { getRecipesAutocomplete } from "../../services";
@@ -13,20 +21,24 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 	const { data: predictions } = getRecipesAutocomplete({ query: searchWithDebounce });
 
 	const updatePredictions = (event: ChangeEvent<HTMLInputElement>) => {
-		setSearch(event.target.value);
+		const value = event.target.value;
 
-		const hasContent = !/^\s*$/g.test(event.target.value);
+		setSearch(value);
+
+		const hasContent = !/^\s*$/g.test(value);
 		hasContent || setShow(false);
 		hasContent || onSearch("");
 
 		const url = new URL(window.location.href);
-		hasContent
-			? url.searchParams.set("query", event.target.value.trim())
-			: url.searchParams.delete("query");
+		hasContent ? url.searchParams.set("query", value.trim()) : url.searchParams.delete("query");
 		window.history.replaceState(null, "", url);
 	};
 
-	const updateSearch = (event: MouseEvent<HTMLButtonElement>) => {
+	const updateSearch = (
+		event: MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>
+	) => {
+		if ("key" in event && event.key !== "Enter") return;
+
 		const updatedSearch = (event.target as HTMLButtonElement).innerText;
 		setSearch(updatedSearch);
 
@@ -73,7 +85,10 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 			<ul className={`search__predictions search__predictions--${show ? "show" : "hidden"}`}>
 				{predictions?.map((prediction) => (
 					<li className="search__prediction" key={prediction.id}>
-						<button className="search__prediction-button" onMouseDown={updateSearch}>
+						<button
+							className="search__prediction-button"
+							onMouseDown={updateSearch}
+							onKeyDown={updateSearch}>
 							{prediction.title}
 						</button>
 					</li>

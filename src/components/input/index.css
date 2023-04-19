@@ -48,10 +48,6 @@
 	background-color: var(--neutral-400);
 }
 
-.search__icon {
-	border: 0.1rem dashed transparent;
-}
-
 .sort__select {
 	border-radius: 0.5rem;
 	border: 0.1rem dashed transparent;

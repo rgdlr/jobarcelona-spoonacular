@@ -8,12 +8,13 @@
 
 .search__icon {
 	border-radius: 0.75rem;
+	border: 0.1rem dashed transparent;
 	display: grid;
 	padding: 0.5rem;
 	place-content: center;
 	position: absolute;
 	right: 0.5rem;
-	top: 1.75rem;
+	top: 1.6rem;
 }
 
 .search__icon:hover,
