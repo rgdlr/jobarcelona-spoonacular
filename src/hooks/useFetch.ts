@@ -16,24 +16,41 @@ export function useFetch<Type>(
 	const [error, setError] = useState<Error>();
 	const [loading, setLoading] = useState<boolean>(true);
 
-	const abort = () => {
-		if (!controller) throw new Error("abort: undefined controller");
+	const abort = (): void => {
+		if (!controller) throw new Error("Abort controller is not defined");
 		controller.abort();
-		setError({ name: "AbortError", message: "The user aborted a request." });
+		setError({ name: "AbortError", message: "The user aborted a request" });
 	};
 
-	const setFetch = (data: Type | undefined, error: Error | undefined, loading: boolean) => {
+	const setFetch = (data: Type | undefined, error: Error | undefined, loading: boolean): void => {
 		setData(data);
 		setError(error);
 		setLoading(loading);
-		return false;
 	};
 
-	const responseToJson = (response: Response) =>
-		setFetch(undefined, undefined, true) || response.json();
-	const jsonToData = (json: Type) => setFetch(json, undefined, false);
-	const responseToError = (error: Error) => setFetch(undefined, error, false);
-	const setLoadingOff = () => setLoading(false);
+	const responseToJson = (response: Response): Promise<Type> => {
+		if (!response.ok) throw new Error(response.statusText);
+		setFetch(undefined, undefined, true);
+		return response.json();
+	};
+
+	const jsonToData = (json: Type): void => setFetch(json, undefined, false);
+	const responseToError = (error: Error): void => setFetch(undefined, error, false);
+	const setLoadingOff = (): void => setLoading(false);
+
+	const fetchData = (input: RequestInfo | URL, init?: RequestInit | undefined) => {
+		setFetch(undefined, undefined, true);
+
+		const promise = fetch(input, init)
+			.then(responseToJson)
+			.then(jsonToData)
+			.catch(responseToError)
+			.finally(setLoadingOff);
+
+		return promise;
+	};
+
+	const refetch = (): Promise<void> => fetchData(input, init);
 
 	useEffect(() => {
 		if (isFirstRender && !onFirstRender) return;
@@ -42,14 +59,10 @@ export function useFetch<Type>(
 		const abortController = new AbortController();
 		setController(abortController);
 
-		fetch(input, { ...init, signal: abortController.signal })
-			.then(responseToJson)
-			.then(jsonToData)
-			.catch(responseToError)
-			.finally(setLoadingOff);
+		fetchData(input, { ...init, signal: abortController.signal });
 
 		return () => abortController.abort();
 	}, [input]);
 
-	return { abort, data, error, loading };
+	return { abort, data, error, loading, refetch };
 }
