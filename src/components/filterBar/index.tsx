@@ -13,7 +13,7 @@ export interface FilterBarAttributes extends HTMLAttributes<HTMLElement> {
 
 export function FilterBar(attributes: FilterBarAttributes) {
 	const { className, current, onOrder, onSort, onFilter, ...restAttributes } = attributes;
-
+	
 	return (
 		<div {...restAttributes} className={computeClassNames("filter-bar", className)}>
 			<input
