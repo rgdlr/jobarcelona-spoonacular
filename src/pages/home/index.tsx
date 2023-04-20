@@ -13,7 +13,7 @@ export function Home() {
 
 	const [filterText, setFilterText] = useState<string>("");
 	const [sortType, setSortType] = useState<SortableProperties>(SortableProperties.None);
-	const [sortDescending, setSortDescending] = useState<boolean>(false);
+	const [sortAscending, setSortAscending] = useState<boolean>(false);
 
 	const initialRandomRecipes = useRef<(RandomRecipe | Recipe)[] | undefined>([]);
 
@@ -29,11 +29,11 @@ export function Home() {
 
 		return structuredClone(filteredRandomRecipes)?.sort((a, b) => {
 			const sortableProperty = getSortableProperty[sortType];
-			return sortableProperty(sortDescending ? b : a)?.localeCompare(
-				sortableProperty(sortDescending ? a : b)
+			return sortableProperty(sortAscending ? b : a)?.localeCompare(
+				sortableProperty(sortAscending ? a : b)
 			);
 		});
-	}, [filteredRandomRecipes, sortType, sortDescending]);
+	}, [filteredRandomRecipes, sortType, sortAscending]);
 
 	useEffect(() => void (initialRandomRecipes.current = randomRecipes?.recipes), []);
 
@@ -47,7 +47,7 @@ export function Home() {
 					onChange={(event) => setFilterText(event.target.value)}
 					placeholder="Filter results"
 				/>
-				<Sort current={sortType} onSort={setSortType} onOrder={setSortDescending} />
+				<Sort current={sortType} onSort={setSortType} onOrder={setSortAscending} />
 			</div>
 			{loading && <Loader />}
 			{error && <Error />}

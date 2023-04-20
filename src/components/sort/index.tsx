@@ -1,6 +1,8 @@
+import { HTMLAttributes } from "react";
 import { Switch } from "../../components";
 import { SortableProperties } from "../../constants";
 import "./index.css";
+import { computeClassNames } from "../../utils";
 
 const descendingIcon = (
 	<svg
@@ -24,16 +26,24 @@ const ascendingIcon = (
 	</svg>
 );
 
-export function Sort({ current, onSort, onOrder }: any) {
+export interface CustomSortAttributes extends HTMLAttributes<HTMLInputElement> {
+	current?: SortableProperties;
+	onSort?(property: SortableProperties): void;
+	onOrder?(ascending: boolean): void;
+}
+
+export function Sort(attributes: CustomSortAttributes) {
+	const { className, current, onSort, onOrder, ...restAttributes } = attributes;
+
 	return (
-		<div className="sort">
+		<div {...restAttributes} className={computeClassNames("sort", className)}>
 			<label htmlFor="sort">Sort by</label>
 			<select
 				className="sort__select"
 				defaultValue={SortableProperties.None}
 				name="sort"
 				id="sort"
-				onChange={(event) => onSort(event.target.value as SortableProperties)}>
+				onChange={(event) => onSort && onSort(event.target.value as SortableProperties)}>
 				<option className="filter__option" key="sort" value="sort" disabled>
 					sort
 				</option>
@@ -46,7 +56,7 @@ export function Sort({ current, onSort, onOrder }: any) {
 			<Switch
 				id="descending"
 				name="descending"
-				onChange={(event) => onOrder(event.target.checked)}
+				onChange={(event) => onOrder && onOrder(event.target.checked)}
 				disabled={current === SortableProperties.None}
 				leftLabel={descendingIcon}
 				rightLabel={ascendingIcon}
