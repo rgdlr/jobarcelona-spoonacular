@@ -1,4 +1,5 @@
 import { InputHTMLAttributes } from "react";
+import { computeClassNames } from "../../utils";
 import "./index.css";
 
 export interface CustomSwitchAttributes extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,9 +8,9 @@ export interface CustomSwitchAttributes extends InputHTMLAttributes<HTMLInputEle
 }
 
 export function Switch(attributes: CustomSwitchAttributes): JSX.Element {
-	const { id, leftLabel, rightLabel, ...restAttributes } = attributes;
+	const { className, id, leftLabel, rightLabel, ...restAttributes } = attributes;
 	return (
-		<div className="switch">
+		<div className={computeClassNames("switch", className)}>
 			<label className="switch__label" htmlFor={id}>
 				{leftLabel}
 			</label>

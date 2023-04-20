@@ -1,6 +1,7 @@
 import {
 	ChangeEvent,
 	FormEvent,
+	HTMLAttributes,
 	KeyboardEvent,
 	MouseEvent,
 	useEffect,
@@ -10,9 +11,16 @@ import {
 import { Input, Label } from "../../components";
 import { useOnBlur, useStateWithDebounce } from "../../hooks";
 import { getRecipesAutocomplete } from "../../services";
+import { computeClassNames } from "../../utils";
 import "./index.css";
 
-export function Search({ onSearch }: { onSearch: (search: string) => void }): JSX.Element {
+export interface SearchAttributes extends HTMLAttributes<HTMLElement> {
+	onSearch?(search: string): void;
+}
+
+export function Search(attributes: SearchAttributes): JSX.Element {
+	const { className, onSearch, ...restAttributes } = attributes;
+
 	const searchRef = useRef(null);
 	const [searchWithDebounce, , search, setSearch] = useStateWithDebounce("");
 	const [show, setShow] = useState(false);
@@ -27,7 +35,7 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 
 		const hasContent = !/^\s*$/g.test(value);
 		hasContent || setShow(false);
-		hasContent || onSearch("");
+		hasContent || (onSearch && onSearch(""));
 
 		const url = new URL(window.location.href);
 		hasContent ? url.searchParams.set("query", value.trim()) : url.searchParams.delete("query");
@@ -46,25 +54,25 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 		url.searchParams.set("query", updatedSearch);
 		window.history.replaceState(null, "", url);
 
-		onSearch(`query=${updatedSearch}`);
+		onSearch && onSearch(`query=${updatedSearch}`);
 	};
 
 	const doSearch = (event: FormEvent) => {
 		event.preventDefault();
-		search ? onSearch(`query=${search}`) : onSearch("");
+		onSearch && (search ? onSearch(`query=${search}`) : onSearch(""));
 	};
 
 	useEffect(() => setShow(Boolean(predictions?.length)), [predictions]);
 
 	return (
-		<form autoComplete="off" className="search" ref={searchRef} onSubmit={doSearch}>
+		<form
+			{...restAttributes}
+			autoComplete="off"
+			className={computeClassNames("search", className)}
+			ref={searchRef}
+			onSubmit={doSearch}>
 			<Label htmlFor="search">Search</Label>
-			<Input
-				id="search"
-				onChange={updatePredictions}
-				type="search"
-				value={search}
-			/>
+			<Input id="search" onChange={updatePredictions} type="search" value={search} />
 			<button className="search__icon">
 				<svg
 					aria-labelledby="search"
