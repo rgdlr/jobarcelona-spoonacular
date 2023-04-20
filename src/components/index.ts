@@ -8,3 +8,6 @@ export { Label } from "./label";
 export { Loader } from "./loader";
 export { Search } from "./search";
 export { SearchBar } from "./searchBar";
+export { Sort } from "./sort";
+export { Switch } from "./switch";
+
