@@ -57,10 +57,9 @@ export function Search({ onSearch }: { onSearch: (search: string) => void }): JS
 	useEffect(() => setShow(Boolean(predictions?.length)), [predictions]);
 
 	return (
-		<form autoComplete="false" className="search" ref={searchRef} onSubmit={doSearch}>
+		<form autoComplete="off" className="search" ref={searchRef} onSubmit={doSearch}>
 			<Label htmlFor="search">Search</Label>
 			<Input
-				autoComplete="off"
 				id="search"
 				onChange={updatePredictions}
 				type="search"
