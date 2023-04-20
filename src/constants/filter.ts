@@ -1,10 +1,26 @@
-import { Filter as FilterI } from "../interfaces";
+import { Filter as FilterI, RandomRecipe } from "../interfaces";
 
 export const enum Filter {
 	Checkbox = "checkbox",
 	Input = "input",
 	Select = "select"
 }
+
+export enum SortableProperties {
+	Likes = "likes",
+	None = "none",
+	Time = "time",
+	Title = "title",
+	Type = "type"
+}
+
+export const getSortableProperty: Record<SortableProperties, (recipe: RandomRecipe) => string> = {
+	[SortableProperties.Likes]: (recipe) => String(recipe.aggregateLikes),
+	[SortableProperties.None]: (recipe) => String(recipe.title),
+	[SortableProperties.Time]: (recipe) => String(recipe.readyInMinutes),
+	[SortableProperties.Title]: (recipe) => String(recipe.title),
+	[SortableProperties.Type]: (recipe) => String(recipe.dishTypes?.at(0))
+};
 
 export const filtersSelect = {
 	cuisine: [
