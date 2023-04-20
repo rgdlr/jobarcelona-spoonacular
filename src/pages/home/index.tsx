@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Cards, Error, Loader, SearchBar, Sort } from "../../components";
+import { Cards, Error, FilterBar, Loader, SearchBar } from "../../components";
 import { SortableProperties, getSortableProperty } from "../../constants";
 import { RandomRecipe, Recipe } from "../../interfaces";
 import { getRandomRecipes } from "../../services/recipes";
@@ -40,15 +40,7 @@ export function Home() {
 	return (
 		<>
 			<SearchBar onSearch={setSearchData} />
-			<div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBlock: "1rem" }}>
-				<input
-					className="input"
-					type="search"
-					onChange={(event) => setFilterText(event.target.value)}
-					placeholder="Filter results"
-				/>
-				<Sort current={sortType} onSort={setSortType} onOrder={setSortAscending} />
-			</div>
+			<FilterBar onFilter={setFilterText} onOrder={setSortAscending} onSort={setSortType} />
 			{loading && <Loader />}
 			{error && <Error />}
 			<Cards items={sortedRandomRecipes?.filter((_recipe, index) => index < 25)} />

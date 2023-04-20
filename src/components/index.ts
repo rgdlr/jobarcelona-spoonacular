@@ -2,6 +2,7 @@ export { Card } from "./card";
 export { Cards } from "./cards";
 export { Error } from "./error";
 export { Filter } from "./filter";
+export { FilterBar } from "./filterBar";
 export { Filters } from "./filters";
 export { Input } from "./input";
 export { Label } from "./label";
@@ -10,4 +11,3 @@ export { Search } from "./search";
 export { SearchBar } from "./searchBar";
 export { Sort } from "./sort";
 export { Switch } from "./switch";
-
