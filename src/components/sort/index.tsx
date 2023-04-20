@@ -1,8 +1,8 @@
 import { HTMLAttributes } from "react";
 import { Switch } from "../../components";
 import { SortableProperties } from "../../constants";
-import "./index.css";
 import { computeClassNames } from "../../utils";
+import "./index.css";
 
 const descendingIcon = (
 	<svg
@@ -28,8 +28,8 @@ const ascendingIcon = (
 
 export interface CustomSortAttributes extends HTMLAttributes<HTMLInputElement> {
 	current?: SortableProperties;
-	onSort?(property: SortableProperties): void;
 	onOrder?(ascending: boolean): void;
+	onSort?(property: SortableProperties): void;
 }
 
 export function Sort(attributes: CustomSortAttributes) {
