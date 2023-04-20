@@ -1,0 +1,23 @@
+.sort {
+	background-color: var(--neutral-100);
+	border: 0.1rem solid var(--neutral-300);
+	border-radius: 0.5rem;
+	padding: 0.75rem 1rem;
+	align-items: center;
+	cursor: default;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+
+.sort__select {
+	border-radius: 0.5rem;
+	border: 0.1rem dashed transparent;
+	padding: 0.125rem 0.25rem;
+	text-decoration: underline;
+	text-underline-offset: 0.125rem;
+}
+
+.sort__select:focus-visible {
+	border: 0.1rem dashed var(--neutral-500);
+}
