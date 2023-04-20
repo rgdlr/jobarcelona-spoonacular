@@ -1,7 +1,7 @@
 @keyframes error__dash {
 	0%,
 	30% {
-		fill: 4B4B62;
+		fill: #4B4B62;
 		stroke-dashoffset: 0;
 	}
 	80%,
@@ -49,13 +49,13 @@
 }
 
 .error {
-	min-height: 600px;
-	margin: 0px auto;
-	width: auto;
-	max-width: 460px;
-	display: flex;
 	align-items: center;
+	display: flex;
 	justify-content: center;
+	margin: 0px auto;
+	max-width: 460px;
+	min-height: 30rem;
+	width: auto;
 }
 
 .error__bread-bottom {
@@ -64,31 +64,31 @@
 }
 
 .error__bread-top {
-	animation: error__rotate 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
 	transform-origin: center;
+	animation: error__rotate 7s 1s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
 }
 
 .error__eyes {
-	animation: error__eyes 2s alternate infinite;
 	transform-origin: center;
+	animation: error__eyes 2s alternate infinite;
 }
 
 .error__left-sparks {
-	animation: error__sparks 4s alternate infinite;
 	transform-origin: 150px 156px;
+	animation: error__sparks 4s alternate infinite;
 }
 
 .error__right-sparks {
-	animation: error__sparks 4s alternate infinite;
 	transform-origin: 310px 150px;
+	animation: error__sparks 4s alternate infinite;
 }
 
 .error__path {
-	animation: error__dash 4s alternate infinite;
 	stroke-dasharray: 300;
 	stroke-dashoffset: 300;
+	animation: error__dash 4s alternate infinite;
 }
 .error__background {
-	animation: error__scales 3s alternate infinite;
 	transform-origin: center;
+	animation: error__scales 3s alternate infinite;
 }
