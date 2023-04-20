@@ -1,5 +1,4 @@
 .search {
-	margin-bottom: 1rem;
 	position: sticky;
 	top: -0.25rem;
 	width: fit-content;
@@ -25,7 +24,7 @@
 .search .input {
 	border-radius: 1rem;
 	padding-right: 3rem;
-	max-width: calc(100vw - 5.75rem);
+	max-width: calc(100vw - 6rem);
 	transition-property: border, border-radius;
 	transition-duration: 125ms;
 	transition-timing-function: ease;
