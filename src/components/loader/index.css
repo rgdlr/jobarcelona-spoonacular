@@ -1,10 +1,10 @@
-@keyframes pulse {
+@keyframes loader__pulse {
 	50% {
 		opacity: 0.25;
 	}
 }
 
-@keyframes loader {
+@keyframes loader__spinner {
 	0% {
 		width: 10%;
 		transform: rotate(0deg);
@@ -40,7 +40,7 @@
 	}
 }
 
-@keyframes pan {
+@keyframes loader__pan {
 	0% {
 		transform: rotate(0deg);
 		transform-origin: top right;
@@ -57,7 +57,7 @@
 	}
 }
 
-@keyframes shadow {
+@keyframes loader__shadow {
 	0% {
 		width: 30%;
 	}
@@ -80,8 +80,7 @@
 .loader__text {
 	margin-bottom: 2rem;
 	text-align: center;
-	animation: pulse 2s infinite;
-	animation-timing-function: linear;
+	animation: loader__pulse 2s linear infinite;
 }
 
 .loader__omelet {
@@ -94,32 +93,31 @@
 	top: 8%;
 	width: 60%;
 	z-index: -1;
-	animation: loader 2s infinite;
-	animation-timing-function: linear;
+	animation: loader__spinner 2s linear infinite;
 }
 
 .pan-container {
 	display: flex;
 	width: 100%;
-	animation: pan 2s infinite;
+	animation: loader__pan 2s infinite;
 }
 
 .pan__base {
-	width: 60%;
-	height: 20px;
 	background: linear-gradient(#3949ab, #5c6bc0);
-	border-bottom-right-radius: 20px;
 	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	height: 20px;
+	width: 60%;
 }
 
 .pan__handle {
-	width: 40%;
-	height: 10px;
 	background: linear-gradient(#3949ab, #5c6bc0);
-	border-top-right-radius: 10px;
-	border-top-left-radius: 10px;
-	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	height: 10px;
+	width: 40%;
 }
 
 .loader__shadow {
@@ -130,5 +128,5 @@
 	height: 8px;
 	background: lightgray;
 	border-radius: 20px;
-	animation: shadow 2s infinite;
+	animation: loader__shadow 2s infinite;
 }

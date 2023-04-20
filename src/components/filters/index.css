@@ -6,14 +6,18 @@
 	background-color: var(--neutral-100);
 	border-radius: 1rem;
 	border: 0.1rem solid var(--neutral-300);
-	padding: 1rem;
 	display: grid;
+	padding: 1rem;
 	place-content: center;
 }
 
 .filters__button:hover,
 .filters__button:focus-visible {
 	background-color: var(--neutral-200);
+}
+
+.filters__button:focus-visible {
+	border: 0.1rem dashed var(--neutral-500);
 }
 
 .filters__form {

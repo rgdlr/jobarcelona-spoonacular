@@ -12,11 +12,11 @@
 
 .filter__input,
 .filter__select {
-	padding: 0.5rem 0.75rem;
-	width: 100%;
 	background-color: var(--neutral-200);
 	border-radius: 0.75rem;
 	border: 0.1rem dashed transparent;
+	padding: 0.5rem 0.75rem;
+	width: 100%;
 }
 
 .filter__option {
@@ -37,8 +37,8 @@
 
 .filter:has(.filter__input[type="checkbox"]) {
 	align-items: center;
-	display: flex;
 	cursor: default;
+	display: flex;
 }
 
 .filter__input[type="reset"],

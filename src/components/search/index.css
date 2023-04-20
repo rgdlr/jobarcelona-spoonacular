@@ -21,12 +21,16 @@
 	background-color: var(--neutral-200);
 }
 
+.search__icon:focus-visible {
+	border: 0.1rem dashed var(--neutral-500);
+}
+
 .search .input {
-	border-radius: 1rem;
-	padding-right: 3rem;
 	max-width: calc(100vw - 6rem);
-	transition-property: border, border-radius;
+	padding-right: 3rem;
+
 	transition-duration: 125ms;
+	transition-property: border, border-radius;
 	transition-timing-function: ease;
 }
 
@@ -38,8 +42,8 @@
 .search__predictions {
 	background-color: var(--neutral-100);
 	border-radius: 0 0 1rem 1rem;
-	border: 0.1rem solid var(--neutral-300);
 	border-top: transparent;
+	border: 0.1rem solid var(--neutral-300);
 	cursor: default;
 	opacity: 0;
 	overflow: hidden;
@@ -57,8 +61,8 @@
 .search__predictions--show {
 	min-height: 10rem;
 	opacity: 1;
-	visibility: visible;
 	transform: translateY(0);
+	visibility: visible;
 }
 
 /* .search__prediction {} */

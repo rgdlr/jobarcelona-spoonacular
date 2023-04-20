@@ -59,8 +59,8 @@
 }
 
 .error__bread-bottom {
-	animation: error__rotate 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
 	transform-origin: center;
+	animation: error__rotate 14s cubic-bezier(0.1, 0.49, 0.41, 0.97) infinite;
 }
 
 .error__bread-top {
@@ -84,9 +84,9 @@
 }
 
 .error__path {
+	animation: error__dash 4s alternate infinite;
 	stroke-dasharray: 300;
 	stroke-dashoffset: 300;
-	animation: error__dash 4s alternate infinite;
 }
 .error__background {
 	animation: error__scales 3s alternate infinite;

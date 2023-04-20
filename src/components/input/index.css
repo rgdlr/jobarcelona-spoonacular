@@ -1,5 +1,5 @@
 .input {
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	background-color: var(--neutral-100);
 	border: 0.1rem solid var(--neutral-300);
 	display: block;
@@ -16,8 +16,6 @@
 	/* margin-bottom: 1rem; */
 }
 
-.input:focus-visible,
-.search__icon:focus-visible,
-.filters__button:focus-visible {
+.input:focus-visible {
 	border: 0.1rem dashed var(--neutral-500);
 }
